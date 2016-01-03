@@ -1,14 +1,15 @@
-from DictionaryInterface import DictionaryInterface
+from Sastrawi.Dictionary.DictionaryInterface import DictionaryInterface
 
 class ArrayDictionary(DictionaryInterface):
     """description of class"""
 
-    def __init__(self, words={}):
+    def __init__(self, words=None):
         self.words = {}
-        self.addWords(words)
+        if words:
+            self.addWords(words)
 
     def contains(self, word):
-        return word in words
+        return word in self.words
 
     def count(self):
         return len(self.words)

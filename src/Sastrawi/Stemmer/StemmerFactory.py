@@ -1,17 +1,17 @@
 import os
-from Dictionary.ArrayDictionary import ArrayDictionary
-from Stemmer import Stemmer
-from CachedStemmer import CachedStemmer
-from Cache.ArrayCache import ArrayCache
+from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
+from Sastrawi.Stemmer import Stemmer
+from Sastrawi.Stemmer.CachedStemmer import CachedStemmer
+from Sastrawi.Stemmer.Cache.ArrayCache import ArrayCache
 
-""" Stemmer factory helps creating pre-configured stemmer """
 class StemmerFactory(object):
+    """ Stemmer factory helps creating pre-configured stemmer """
     APC_KEY = 'sastrawi_cache_dictionary'
 
     def createStemmer(self, isDev=False):
         """ Returns Stemmer instance """
 
-        words = self.getWords()
+        words = self.getWords(isDev)
         dictionary = ArrayDictionary(words)
         stemmer = Stemmer(dictionary)
 

@@ -25,8 +25,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dictionary\" />
+    <Folder Include="Morphology\" />
+    <Folder Include="Morphology\Disambiguator\" />
     <Folder Include="Stemmer\Cache\" />
+    <Folder Include="Stemmer\Context\Visitor\" />
     <Folder Include="Stemmer\Filter\" />
+    <Folder Include="Stemmer\Context\" />
+    <Folder Include="Stemmer\ConfixStripping\" />
     <Folder Include="Tests\" />
     <Folder Include="Stemmer\" />
     <Folder Include="Tests\Stemmer\" />
@@ -35,7 +40,16 @@
     <Compile Include="Dictionary\ArrayDictionary.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dictionary\DictionaryInterface.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Dictionary\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Stemmer\CachedStemmer.py">
@@ -48,6 +62,52 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Stemmer\Cache\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\ConfixStripping\PrecedenceAdjustmentSpecification.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\ConfixStripping\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Context.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\ContextInterface.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Removal.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\RemovalInterface.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\AbstractDisambiguatePrefixRule.py" />
+    <Compile Include="Stemmer\Context\Visitor\DontStemShortWord.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\PrefixDisambiguator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\RemoveDerivationalSuffix.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\RemoveInflectionalParticle.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\RemoveInflectionalPossessivePronoun.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\RemovePlainPrefix.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\VisitorProvider.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\Visitor\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Context\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Stemmer\Filter\TextNormalizer.py">

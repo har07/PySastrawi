@@ -1,4 +1,4 @@
-from CacheInterface import CacheInterface
+from Sastrawi.Stemmer.Cache.CacheInterface import CacheInterface
 
 class ArrayCache(CacheInterface):
     """description of class"""

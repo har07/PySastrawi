@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9a2db5b1-a5b0-4b52-aa46-d2ce718cc5dd}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dictionary\" />
+    <Folder Include="Stemmer\Cache\" />
+    <Folder Include="Stemmer\Filter\" />
+    <Folder Include="Tests\" />
+    <Folder Include="Stemmer\" />
+    <Folder Include="Tests\Stemmer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dictionary\ArrayDictionary.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dictionary\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\CachedStemmer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Cache\ArrayCache.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Cache\CacheInterface.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Cache\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Filter\TextNormalizer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Filter\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\Stemmer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\StemmerFactory.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stemmer\StemmerInterface.py" />
+    <Compile Include="Stemmer\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\Stemmer\StemmerFactoryTest.py" />
+    <Compile Include="__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

@@ -45,7 +45,7 @@ class Context(object):
     #def processIsStopped(self):
     #    return self.processIsStopped
 
-    def addRemovals(self, removal):
+    def addRemoval(self, removal):
         self.removals.append(removal)
 
     def getRemovals(self):
@@ -61,7 +61,7 @@ class Context(object):
         self.startStemmingProcess()
 
         #step 6
-        if self.getCurrentWord() in self.dictionary:
+        if self.dictionary.contains(self.currentWord):
             self.result = self.getCurrentWord()
         else:
             self.result = self.originalWord
@@ -69,10 +69,10 @@ class Context(object):
     def startStemmingProcess(self):
 
         #step 1
-        if self.currentWord in self.dictionary:
+        if self.dictionary.contains(self.currentWord):
             return
         self.acceptVisitors(self.visitors)
-        if self.currentWord in self.dictionary:
+        if self.dictionary.contains(self.currentWord):
             return
 
         csPrecedenceAdjustmentSpecification = PrecedenceAdjustmentSpecification()
@@ -82,12 +82,12 @@ class Context(object):
         if csPrecedenceAdjustmentSpecification.isSatisfiedBy(self.getOriginalWord()):
             #step 4, 5
             self.removePrefixes()
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return
 
             #step 2, 3
             self.removeSuffixes()
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return
             else:
                 #if the trial is failed, restore the original word
@@ -97,12 +97,12 @@ class Context(object):
 
         #step 2, 3
         self.removeSuffixes()
-        if self.getCurrentWord() in self.dictionary:
+        if self.dictionary.contains(self.currentWord):
             return
 
         #step 4, 5
         self.removePrefixes()
-        if self.getCurrentWord() in self.dictionary:
+        if self.dictionary.contains(self.currentWord):
             return
 
         #ECS loop pengembalian akhiran
@@ -111,7 +111,7 @@ class Context(object):
     def removePrefixes(self):
         for i in range(3):
             self.acceptPrefixVisitors(self.prefixVisitors)
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return
 
     def removeSuffixes(self):
@@ -123,7 +123,7 @@ class Context(object):
     def acceptVisitors(self, visitors):
         for visitor in visitors:
             self.accept(visitor)
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return self.getCurrentWord()
             if self.processIsStopped:
                 return self.getCurrentWord()
@@ -132,7 +132,7 @@ class Context(object):
         removalCount = len(self.removals)
         for visitor in visitors:
             self.accept(visitor)
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return self.getCurrentWord()
             if self.processIsStopped:
                 return self.getCurrentWord()
@@ -155,7 +155,7 @@ class Context(object):
 
                 #step 4,5
                 self.removePrefixes()
-                if self.getCurrentWord() in self.dictionary:
+                if self.dictionary.contains(self.currentWord):
                     return
                 self.setCurrentWord(removal.getResult() + 'kan')
             else:
@@ -163,7 +163,7 @@ class Context(object):
 
             #step 4,5
             self.removePrefixes()
-            if self.getCurrentWord() in self.dictionary:
+            if self.dictionary.contains(self.currentWord):
                 return
 
             self.removals = removals

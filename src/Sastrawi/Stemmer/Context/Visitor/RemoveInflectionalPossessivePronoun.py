@@ -13,10 +13,10 @@ class RemoveInflectionalPossessivePronoun(object):
         if result != context.getCurrentWord():
             removedPart = re.sub(result, '', context.getCurrentWord(), 1)
 
-        removal = Removal(self, context.getCurrentWord(), result, removedPart, 'PP')
+            removal = Removal(self, context.getCurrentWord(), result, removedPart, 'PP')
 
-        context.addRemoval(removal)
-        context.setCurrentWord(result)
+            context.addRemoval(removal)
+            context.setCurrentWord(result)
 
     def remove(self, word):
         """Remove inflectional possessive pronoun : ku|mu|nya|-ku|-mu|-nya"""

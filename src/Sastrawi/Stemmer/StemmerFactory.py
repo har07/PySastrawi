@@ -1,6 +1,6 @@
 import os
 from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
-from Sastrawi.Stemmer import Stemmer
+from Sastrawi.Stemmer.Stemmer import Stemmer
 from Sastrawi.Stemmer.CachedStemmer import CachedStemmer
 from Sastrawi.Stemmer.Cache.ArrayCache import ArrayCache
 
@@ -21,13 +21,14 @@ class StemmerFactory(object):
         return cachedStemmer
 
     def getWords(self, isDev=False):
-        if isDev or callable(getattr(self, 'apc_fetch')):
-            words = self.getWordsFromFile()
-        else:
-            words = apc_fetch(self.APC_KEY)
-            if not words:
-                words = self.getWordsFromFile()
-                apc_store(self.APC_KEY, words)
+        #if isDev or callable(getattr(self, 'apc_fetch')):
+        #    words = self.getWordsFromFile()
+        #else:
+        #    words = apc_fetch(self.APC_KEY)
+        #    if not words:
+        #        words = self.getWordsFromFile()
+        #        apc_store(self.APC_KEY, words)
+        return self.getWordsFromFile()
 
     def getWordsFromFile(self):
         current_dir = os.path.dirname(os.path.realpath(__file__))

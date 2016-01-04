@@ -4,7 +4,7 @@ class ArrayDictionary(DictionaryInterface):
     """description of class"""
 
     def __init__(self, words=None):
-        self.words = {}
+        self.words = []
         if words:
             self.addWords(words)
 
@@ -23,7 +23,7 @@ class ArrayDictionary(DictionaryInterface):
         """Add a word to the dictionary"""
         if not word or word.strip() == '':
             return
-        self.words[word] = word
+        self.words.append(word)
 
 
 

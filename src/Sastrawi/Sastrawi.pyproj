@@ -6,7 +6,7 @@
     <ProjectGuid>{9a2db5b1-a5b0-4b52-aa46-d2ce718cc5dd}</ProjectGuid>
     <ProjectHome />
     <StartupFile />
-    <SearchPath />
+    <SearchPath>..\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
@@ -27,6 +27,7 @@
     <Folder Include="Dictionary\" />
     <Folder Include="Morphology\" />
     <Folder Include="Morphology\Disambiguator\" />
+    <Folder Include="StopWordRemover\" />
     <Folder Include="Stemmer\Cache\" />
     <Folder Include="Stemmer\Context\Visitor\" />
     <Folder Include="Stemmer\Filter\" />
@@ -46,7 +47,61 @@
     <Compile Include="Dictionary\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule10.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule11.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule12.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule13a.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule13b.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule14.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule1a.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule1b.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule4.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule5.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule6a.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule6b.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule7.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule8.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule9.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Morphology\Disambiguator\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\InvalidAffixPairSpecification.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Morphology\__init__.py">
@@ -126,7 +181,19 @@
     <Compile Include="Stemmer\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StopWordRemover\StopWordRemover.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StopWordRemover\StopWordRemoverFactory.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StopWordRemover\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\Stemmer\StemmerFactoryTest.py" />
+    <Compile Include="Tests\Stemmer\StemmerTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>

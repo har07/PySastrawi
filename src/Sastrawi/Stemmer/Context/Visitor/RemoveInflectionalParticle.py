@@ -12,11 +12,11 @@ class RemoveInflectionalParticle(object):
         result = self.remove(context.getCurrentWord())
         if result != context.getCurrentWord():
             removedPart = re.sub(result, '', context.getCurrentWord(), 1)
+            
+            removal = Removal(self, context.getCurrentWord(), result, removedPart, 'P')
 
-        removal = Removal(self, context.getCurrentWord(), result, removedPart, 'P')
-
-        context.addRemoval(removal)
-        context.setCurrentWord(result)
+            context.addRemoval(removal)
+            context.setCurrentWord(result)
 
     def remove(self, word):
         """Remove inflectional particle : lah|kah|tah|pun"""

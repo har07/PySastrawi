@@ -13,10 +13,10 @@ class RemovePlainPrefix(object):
         if result != context.getCurrentWord():
             removedPart = re.sub(result, '', context.getCurrentWord(), 1)
 
-        removal = Removal(self, context.getCurrentWord(), result, removedPart, 'DP')
+            removal = Removal(self, context.getCurrentWord(), result, removedPart, 'DP')
 
-        context.addRemoval(removal)
-        context.setCurrentWord(result)
+            context.addRemoval(removal)
+            context.setCurrentWord(result)
 
     def remove(self, word):
         """Remove plain prefix : di|ke|se"""

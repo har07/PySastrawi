@@ -13,10 +13,10 @@ class RemoveDerivationalSuffix(object):
         if result != context.getCurrentWord():
             removedPart = re.sub(result, '', context.getCurrentWord(), 1)
 
-        removal = Removal(self, context.getCurrentWord(), result, removedPart, 'DS')
+            removal = Removal(self, context.getCurrentWord(), result, removedPart, 'DS')
 
-        context.addRemoval(removal)
-        context.setCurrentWord(result)
+            context.addRemoval(removal)
+            context.setCurrentWord(result)
 
     def remove(self, word):
         """Remove derivational suffix

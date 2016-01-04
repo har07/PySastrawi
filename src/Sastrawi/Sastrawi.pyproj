@@ -42,6 +42,9 @@
     <Compile Include="Dictionary\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule1.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule10.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,37 +54,101 @@
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule12.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule13a.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule13b.py">
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule13.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule14.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule1a.py">
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule15.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule1b.py">
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule16.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule17.py" />
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule18.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule19.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule2.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule20.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule21.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule23.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule24.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule25.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule26.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule27.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule28.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule29.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule3.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule30.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule31.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule32.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule34.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule35.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule36.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule37.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule38.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule39.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule4.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule40.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule41.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule42.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule5.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule6a.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule6b.py">
+    <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule6.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Morphology\Disambiguator\DisambiguatorPrefixRule7.py">

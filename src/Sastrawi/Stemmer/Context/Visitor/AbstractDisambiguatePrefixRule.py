@@ -7,12 +7,12 @@ class AbstractDisambiguatePrefixRule(object):
     def __init__(self):
         self.disambiguators = []
 
-    def visit(context):
+    def visit(self, context):
         result = None
 
         for disambiguator in self.disambiguators:
             result = disambiguator.disambiguate(context.getCurrentWord())
-            if result in context.getDictionary():
+            if context.getDictionary().contains(result):
                 break
 
         if not result:

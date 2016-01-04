@@ -6,7 +6,7 @@
     <ProjectGuid>{69199be5-44c5-45c3-8b82-62f14da2b9f1}</ProjectGuid>
     <ProjectHome />
     <StartupFile />
-    <SearchPath>..\src\Sastrawi\</SearchPath>
+    <SearchPath>..\src\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
@@ -38,6 +38,7 @@
     <Compile Include="Stemmer\StemmerFactoryTest.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Stemmer\StemmerTest.py" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />

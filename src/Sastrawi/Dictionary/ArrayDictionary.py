@@ -1,6 +1,4 @@
-from Sastrawi.Dictionary.DictionaryInterface import DictionaryInterface
-
-class ArrayDictionary(DictionaryInterface):
+class ArrayDictionary(object):
     """description of class"""
 
     def __init__(self, words=None):

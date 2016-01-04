@@ -33,15 +33,10 @@
     <Folder Include="Stemmer\Filter\" />
     <Folder Include="Stemmer\Context\" />
     <Folder Include="Stemmer\ConfixStripping\" />
-    <Folder Include="Tests\" />
     <Folder Include="Stemmer\" />
-    <Folder Include="Tests\Stemmer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dictionary\ArrayDictionary.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\DictionaryInterface.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dictionary\__init__.py">
@@ -113,9 +108,6 @@
     <Compile Include="Stemmer\Cache\ArrayCache.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Stemmer\Cache\CacheInterface.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Stemmer\Cache\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -128,13 +120,7 @@
     <Compile Include="Stemmer\Context\Context.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Stemmer\Context\ContextInterface.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Stemmer\Context\Removal.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Stemmer\Context\RemovalInterface.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Stemmer\Context\Visitor\AbstractDisambiguatePrefixRule.py" />
@@ -177,7 +163,6 @@
     <Compile Include="Stemmer\StemmerFactory.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Stemmer\StemmerInterface.py" />
     <Compile Include="Stemmer\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -188,10 +173,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="StopWordRemover\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tests\Stemmer\StemmerFactoryTest.py" />
-    <Compile Include="Tests\Stemmer\StemmerTest.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="__init__.py">

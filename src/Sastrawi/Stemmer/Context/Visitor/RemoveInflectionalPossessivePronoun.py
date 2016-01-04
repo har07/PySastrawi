@@ -20,5 +20,5 @@ class RemoveInflectionalPossessivePronoun(object):
 
     def remove(self, word):
         """Remove inflectional possessive pronoun : ku|mu|nya|-ku|-mu|-nya"""
-        return re.sub(r'^(ku|mu|nya)', '', word, 1)
+        return re.sub(r'-*(ku|mu|nya)', '', word, 1)
 

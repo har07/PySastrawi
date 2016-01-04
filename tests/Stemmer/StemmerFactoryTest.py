@@ -6,7 +6,7 @@ class Test_StemmerFactoryTest(unittest.TestCase):
         factory = StemmerFactory()
         stemmer = factory.createStemmer()
 
-        sentence = 'Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan. beterbangan'
+        sentence = 'kulitkupun'
         output = stemmer.stem(sentence)
 
         if output == sentence:

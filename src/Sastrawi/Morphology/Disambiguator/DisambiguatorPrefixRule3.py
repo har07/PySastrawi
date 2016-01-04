@@ -11,7 +11,7 @@ class DisambiguatorPrefixRule3(object):
         """
         matches = re.match(r'ber([bcdfghjklmnpqrstvwxyz])([a-z])er([aiueo])(.*)', word)
         if matches:
-            if re.matches.group(1) == 'r':
+            if matches.group(1) == 'r':
                 return
             
             return matches.group(1) + matches.group(2) + 'er' + matches.group(3) + matches.group(4)

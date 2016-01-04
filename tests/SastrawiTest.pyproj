@@ -32,9 +32,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FunctionalTests\" />
+    <Folder Include="FunctionalTests\Stemmer\" />
     <Folder Include="Stemmer\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionalTests\Stemmer\StemmerTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Stemmer\StemmerFactoryTest.py">
       <SubType>Code</SubType>
     </Compile>

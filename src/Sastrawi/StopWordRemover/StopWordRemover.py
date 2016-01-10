@@ -11,8 +11,8 @@ class StopWordRemover(object):
         """Remove stop words."""
         words = text.split(' ')
         for word in words:
-            if word in self.dictionary:
-                self.dictionary.remove(word)
+            if self.dictionary.contains(word):
+                words.remove(word)
 
         return ' '.join(words)
 

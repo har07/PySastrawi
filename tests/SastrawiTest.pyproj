@@ -34,16 +34,43 @@
   <ItemGroup>
     <Folder Include="FunctionalTests\" />
     <Folder Include="FunctionalTests\Stemmer\" />
-    <Folder Include="Stemmer\" />
+    <Folder Include="IntegrationTests\" />
+    <Folder Include="IntegrationTests\Stemmer\" />
+    <Folder Include="UnitTests\" />
+    <Folder Include="UnitTests\Dictionary\" />
+    <Folder Include="UnitTests\Morphology\" />
+    <Folder Include="UnitTests\Morphology\Disambiguator\" />
+    <Folder Include="UnitTests\StopWordRemover\" />
+    <Folder Include="UnitTests\Stemmer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionalTests\Stemmer\StemmerTest.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Stemmer\StemmerFactoryTest.py">
+    <Compile Include="IntegrationTests\Stemmer\StemmerTest.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Stemmer\StemmerTest.py" />
+    <Compile Include="UnitTests\Dictionary\ArrayDictionaryTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitTests\Morphology\Disambiguator\DisambiguatorPrefixRule1Test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitTests\Morphology\InvalidAffixPairSpecificationTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitTests\Stemmer\StemmerFactoryTest.py" />
+    <Compile Include="UnitTests\Stemmer\StemmerTest.py" />
+    <Compile Include="UnitTests\StopWordRemover\StopWordRemoverFactoryTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnitTests\StopWordRemover\StopWordRemoverTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UnitTests\Stemmer\StemmerFactoryTest.pyc" />
+    <Content Include="UnitTests\Stemmer\StemmerTest.pyc" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />

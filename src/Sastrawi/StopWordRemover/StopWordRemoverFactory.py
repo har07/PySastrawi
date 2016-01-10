@@ -1,4 +1,5 @@
 from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
+from Sastrawi.StopWordRemover.StopWordRemover import StopWordRemover
 
 class StopWordRemoverFactory(object):
     """description of class"""

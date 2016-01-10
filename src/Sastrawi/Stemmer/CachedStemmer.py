@@ -1,7 +1,7 @@
-from Sastrawi.Stemmer.StemmerInterface import StemmerInterface
+#from Sastrawi.Stemmer.StemmerInterface import StemmerInterface
 from Sastrawi.Stemmer.Filter import TextNormalizer
 
-class CachedStemmer(StemmerInterface):
+class CachedStemmer(object):
     """description of class"""
     def __init__(self, cache, delegatedStemmer):
         self.cache = cache

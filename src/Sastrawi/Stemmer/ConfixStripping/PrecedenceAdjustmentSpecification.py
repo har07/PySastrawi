@@ -9,12 +9,12 @@ class PrecedenceAdjustmentSpecification(object):
 
     def isSatisfiedBy(self, value):
         regexRules = [
-            r'/^be(.*)lah$/',
-            r'/^be(.*)an$/',
-            r'/^me(.*)i$/',
-            r'/^di(.*)i$/',
-            r'/^pe(.*)i$/',
-            r'/^ter(.*)i$/',
+            r'^be(.*)lah$',
+            r'^be(.*)an$',
+            r'^me(.*)i$',
+            r'^di(.*)i$',
+            r'^pe(.*)i$',
+            r'^ter(.*)i$',
         ]
 
         for rule in regexRules:

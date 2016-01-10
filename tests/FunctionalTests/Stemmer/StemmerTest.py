@@ -60,9 +60,9 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['jualan', 'jual'])
 
         # combination of suffixes
-        #data.append(['bukumukah', 'buku']) gagal karena -ku dianggap suffix dan dihilangkan
+        data.append(['bukumukah', 'buku']) #gagal karena -ku dianggap suffix dan dihilangkan
         data.append(['miliknyalah', 'milik'])
-        #data.append(['kulitkupun', 'kulit']) gagal karena -ku dianggap suffix dan dihilangkan
+        data.append(['kulitkupun', 'kulit']) #gagal karena -ku dianggap suffix dan dihilangkan
         data.append(['berikanku', 'beri'])
         data.append(['sakitimu', 'sakit'])
         data.append(['beriannya', 'beri'])
@@ -243,12 +243,12 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['mengkritik', 'kritik'])
 
         # CS adjusting rule precedence
-        #data.append(['bersekolah', 'sekolah']) gagal sekolah -> seko why?
+        data.append(['bersekolah', 'sekolah']) #gagal sekolah -> seko why?
         data.append(['bertahan', 'tahan'])
-        #data.append(['mencapai', 'capai']) gagal mencapai -> capa
+        data.append(['mencapai', 'capai']) #gagal mencapai -> capa
         data.append(['dimulai', 'mulai'])
-        #data.append(['petani', 'tani']) gagal petani -> petan
-        #data.append(['terabai', 'abai']) gagal terabai -> aba
+        data.append(['petani', 'tani']) #gagal petani -> petan
+        data.append(['terabai', 'abai']) #gagal terabai -> aba
 
         # ECS
         data.append(['mensyaratkan', 'syarat'])

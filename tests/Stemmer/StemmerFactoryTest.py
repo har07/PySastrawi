@@ -6,11 +6,12 @@ class Test_StemmerFactoryTest(unittest.TestCase):
         factory = StemmerFactory()
         stemmer = factory.createStemmer()
 
-        sentence = 'kulitkupun'
+        sentence = 'malaikat-malaikat-Nya'
+        expected = 'malaikat'
         output = stemmer.stem(sentence)
 
-        if output == sentence:
-            raise AssertionError('input sentence was not stemmed at all')
+        if output != expected:
+            raise AssertionError(str.format('output is {} instead of {}', output, expected))
 
     def test_getWordsFromFile(self):
         factory = StemmerFactory()

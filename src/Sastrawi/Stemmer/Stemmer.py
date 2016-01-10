@@ -62,14 +62,15 @@ class Stemmer(object):
         suffixes = ['ku', 'mu', 'nya', 'lah', 'kah', 'tah', 'pun']
         matches = re.match(r'^(.*)-(.*)$', words[0])
         if suffix in suffixes and matches:
-            words[1] = words[1] + '-' + suffix
+            words[0] = matches.group(1)
+            words[1] = matches.group(2) + '-' + suffix
 
         #berbalas-balasan -> balas
         rootWord1 = self.stemSingularWord(words[0])
         rootWord2 = self.stemSingularWord(words[1])
 
         #meniru-nirukan -> tiru
-        if words[1] in self.dictionary and rootWord2 == words[1]:
+        if not self.dictionary.contains(words[1]) and rootWord2 == words[1]:
             rootWord2 = self.stemSingularWord('me' + words[1])
 
         if rootWord1 == rootWord2:

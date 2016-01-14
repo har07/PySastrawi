@@ -4,185 +4,161 @@ from Sastrawi.Stemmer.ConfixStripping.PrecedenceAdjustmentSpecification \
 class Context(object):
     """Stemming Context using Nazief and Adriani, CS, ECS, Improved ECS"""
 
-    def __init__(self, originalWord, dictionary, visitorProvider):
-        self.originalWord = originalWord
-        self.currentWord = originalWord
+    def __init__(self, original_word, dictionary, visitor_provider):
+        self.original_word = original_word
+        self.current_word = original_word
         self.dictionary = dictionary
-        self.visitorProvider = visitorProvider
+        self.visitor_provider = visitor_provider
 
-        self.processIsStopped = False
+        self.process_is_stopped = False
         self.removals = []
         self.visitors = []
-        self.suffixVisitors = []
-        self.prefixVisitors = []
+        self.suffix_visitors = []
+        self.prefix_pisitors = []
         self.result = ''
 
-        self.initVisitors()
+        self.init_visitors()
 
-    def initVisitors(self):
-        self.visitors = self.visitorProvider.getVisitors()
-        self.suffixVisitors = self.visitorProvider.getSuffixVisitors()
-        self.prefixVisitors = self.visitorProvider.getPrefixVisitors()
-
-    def setDictionary(self, dictionary):
-        self.dictionary = dictionary
-
-    def getDictionary(self):
-        return self.dictionary
-
-    def getOriginalWord(self):
-        return self.originalWord
-
-    def setCurrentWord(self, word):
-        self.currentWord = word
-
-    def getCurrentWord(self):
-        return self.currentWord
+    def init_visitors(self):
+        self.visitors = self.visitor_provider.get_visitors()
+        self.suffix_visitors = self.visitor_provider.get_suffix_visitors()
+        self.prefix_pisitors = self.visitor_provider.get_prefix_visitors()
 
     def stopProcess(self):
-        self.processIsStopped = True
+        self.process_is_stopped = True
 
-    #def processIsStopped(self):
-    #    return self.processIsStopped
-
-    def addRemoval(self, removal):
+    def add_removal(self, removal):
         self.removals.append(removal)
 
-    def getRemovals(self):
-        return self.removals
-
-    def getResult(self):
-        return self.result
-
     def execute(self):
-        """Execute stemming process; the result can be retrieved with getResult()"""
+        """Execute stemming process; the result can be retrieved with result"""
 
         #step 1 - 5
-        self.startStemmingProcess()
+        self.start_stemming_process()
 
         #step 6
-        if self.dictionary.contains(self.currentWord):
-            self.result = self.getCurrentWord()
+        if self.dictionary.contains(self.current_word):
+            self.result = self.current_word
         else:
-            self.result = self.originalWord
+            self.result = self.original_word
 
-    def startStemmingProcess(self):
+    def start_stemming_process(self):
 
         #step 1
-        if self.dictionary.contains(self.currentWord):
+        if self.dictionary.contains(self.current_word):
             return
-        self.acceptVisitors(self.visitors)
-        if self.dictionary.contains(self.currentWord):
+        self.accept_visitors(self.visitors)
+        if self.dictionary.contains(self.current_word):
             return
 
         csPrecedenceAdjustmentSpecification = PrecedenceAdjustmentSpecification()
 
         #Confix Stripping
         #Try to remove prefix before suffix if the specification is met
-        if csPrecedenceAdjustmentSpecification.isSatisfiedBy(self.getOriginalWord()):
+        if csPrecedenceAdjustmentSpecification.is_satisfied_by(self.original_word):
             #step 4, 5
-            self.removePrefixes()
-            if self.dictionary.contains(self.currentWord):
+            self.remove_prefixes()
+            if self.dictionary.contains(self.current_word):
                 return
 
             #step 2, 3
-            self.removeSuffixes()
-            if self.dictionary.contains(self.currentWord):
+            self.remove_suffixes()
+            if self.dictionary.contains(self.current_word):
                 return
             else:
                 #if the trial is failed, restore the original word
                 #and continue to normal rule precedence (suffix first, prefix afterwards)
-                self.setCurrentWord(self.originalWord)
+                self.current_word = self.original_word
                 self.removals = []
 
         #step 2, 3
-        self.removeSuffixes()
-        if self.dictionary.contains(self.currentWord):
+        self.remove_suffixes()
+        if self.dictionary.contains(self.current_word):
             return
 
         #step 4, 5
-        self.removePrefixes()
-        if self.dictionary.contains(self.currentWord):
+        self.remove_prefixes()
+        if self.dictionary.contains(self.current_word):
             return
 
         #ECS loop pengembalian akhiran
-        self.loopPengembalianAkhiran()
+        self.loop_pengembalian_akhiran()
 
-    def removePrefixes(self):
+    def remove_prefixes(self):
         for i in range(3):
-            self.acceptPrefixVisitors(self.prefixVisitors)
-            if self.dictionary.contains(self.currentWord):
+            self.accept_prefix_visitors(self.prefix_pisitors)
+            if self.dictionary.contains(self.current_word):
                 return
 
-    def removeSuffixes(self):
-        self.acceptVisitors(self.suffixVisitors)
+    def remove_suffixes(self):
+        self.accept_visitors(self.suffix_visitors)
 
     def accept(self, visitor):
         visitor.visit(self)
 
-    def acceptVisitors(self, visitors):
+    def accept_visitors(self, visitors):
         for visitor in visitors:
             self.accept(visitor)
-            if self.dictionary.contains(self.currentWord):
-                return self.getCurrentWord()
-            if self.processIsStopped:
-                return self.getCurrentWord()
+            if self.dictionary.contains(self.current_word):
+                return self.current_word
+            if self.process_is_stopped:
+                return self.current_word
 
-    def acceptPrefixVisitors(self, visitors):
+    def accept_prefix_visitors(self, visitors):
         removalCount = len(self.removals)
         for visitor in visitors:
             self.accept(visitor)
-            if self.dictionary.contains(self.currentWord):
-                return self.getCurrentWord()
-            if self.processIsStopped:
-                return self.getCurrentWord()
+            if self.dictionary.contains(self.current_word):
+                return self.current_word
+            if self.process_is_stopped:
+                return self.current_word
             if len(self.removals) > removalCount:
                 return
 
-    def loopPengembalianAkhiran(self):
+    def loop_pengembalian_akhiran(self):
         """ECS Loop Pengembalian Akhiran"""
-        self.restorePrefix()
+        self.restore_prefix()
 
         removals = self.removals
-        reversedRemovals = reversed(removals)
-        currentWord = self.getCurrentWord()
+        reversed_removals = reversed(removals)
+        current_word = self.current_word
 
-        for removal in reversedRemovals:
-            if not self.isSuffixRemoval(removal):
+        for removal in reversed_removals:
+            if not self.is_suffix_removal(removal):
                 continue
-            if removal.getRemovedPart() == 'kan':
-                self.setCurrentWord(removal.getResult() + 'k')
+            if removal.get_removed_part() == 'kan':
+                self.current_word = removal.result + 'k'
 
                 #step 4,5
-                self.removePrefixes()
-                if self.dictionary.contains(self.currentWord):
+                self.remove_prefixes()
+                if self.dictionary.contains(self.current_word):
                     return
-                self.setCurrentWord(removal.getResult() + 'kan')
+                self.current_word = removal.result + 'kan'
             else:
-                self.setCurrentWord(removal.getSubject())
+                self.current_word = removal.get_subject()
 
             #step 4,5
-            self.removePrefixes()
-            if self.dictionary.contains(self.currentWord):
+            self.remove_prefixes()
+            if self.dictionary.contains(self.current_word):
                 return
 
             self.removals = removals
-            self.setCurrentWord(currentWord)
+            self.current_word = current_word
 
-    def isSuffixRemoval(self, removal):
+    def is_suffix_removal(self, removal):
         """Check wether the removed part is a suffix"""
-        return removal.getAffixType() == 'DS' \
-               or removal.getAffixType() == 'PP' \
-               or removal.getAffixType() == 'P'
+        return removal.get_affix_type() == 'DS' \
+               or removal.get_affix_type() == 'PP' \
+               or removal.get_affix_type() == 'P'
 
-    def restorePrefix(self):
+    def restore_prefix(self):
         """Restore prefix to proceed with ECS loop pengembalian akhiran"""
         for removal in self.removals:
             #return the word before precoding (the subject of first prefix removal)
-            self.setCurrentWord(removal.getSubject())
+            self.current_word = removal.get_subject()
             break
 
         for removal in self.removals:
-            if removal.getAffixType() == 'DP':
+            if removal.get_affix_type() == 'DP':
                 self.removals.remove(removal)
 

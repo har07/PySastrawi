@@ -4,7 +4,7 @@ class StopWordRemover(object):
     def __init__(self, dictionary):
         self.dictionary = dictionary
 
-    def getDictionary(self):
+    def get_dictionary(self):
         return self.dictionary
 
     def remove(self, text):

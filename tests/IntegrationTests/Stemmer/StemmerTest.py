@@ -6,10 +6,10 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 class Test_StemmerTest(unittest.TestCase):
     def setUp(self):
         stemmerFactory = StemmerFactory()
-        self.stemmer = stemmerFactory.createStemmer()
+        self.stemmer = stemmerFactory.create_stemmer()
         return super(Test_StemmerTest, self).setUp()
 
-    def getTestData(self):
+    def get_test_data(self):
         data = []
 
         data.append(['kebijakan', 'bijak'])
@@ -52,13 +52,13 @@ class Test_StemmerTest(unittest.TestCase):
 
         return data
 
-    def tryStem(self, word, stem):
+    def try_stem(self, word, stem):
         self.assertEquals(stem, self.stemmer.stem(word))
 
     def test_stem(self):
-        data = self.getTestData()
+        data = self.get_test_data()
         for d in data:
-            self.tryStem(d[0], d[1])
+            self.try_stem(d[0], d[1])
 
 if __name__ == '__main__':
     unittest.main()

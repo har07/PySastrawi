@@ -1,19 +1,19 @@
 class RemovalInterface(object):
     """description of class"""
 
-    def getVisitor(self):
+    def get_visitor(self):
         pass
 
-    def getSubject(self):
+    def get_subject(self):
         pass
 
-    def getResult(self):
+    def get_result(self):
         pass
 
-    def getRemovedPart(self):
+    def get_removed_part(self):
         pass
 
-    def getAffixType(self):
+    def get_affix_type(self):
         pass
 
 

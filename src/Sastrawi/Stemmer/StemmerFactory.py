@@ -8,10 +8,10 @@ class StemmerFactory(object):
     """ Stemmer factory helps creating pre-configured stemmer """
     APC_KEY = 'sastrawi_cache_dictionary'
 
-    def createStemmer(self, isDev=False):
+    def create_stemmer(self, isDev=False):
         """ Returns Stemmer instance """
 
-        words = self.getWords(isDev)
+        words = self.get_words(isDev)
         dictionary = ArrayDictionary(words)
         stemmer = Stemmer(dictionary)
 
@@ -20,7 +20,7 @@ class StemmerFactory(object):
 
         return cachedStemmer
 
-    def getWords(self, isDev=False):
+    def get_words(self, isDev=False):
         #if isDev or callable(getattr(self, 'apc_fetch')):
         #    words = self.getWordsFromFile()
         #else:
@@ -28,9 +28,9 @@ class StemmerFactory(object):
         #    if not words:
         #        words = self.getWordsFromFile()
         #        apc_store(self.APC_KEY, words)
-        return self.getWordsFromFile()
+        return self.get_words_from_file()
 
-    def getWordsFromFile(self):
+    def get_words_from_file(self):
         current_dir = os.path.dirname(os.path.realpath(__file__))
         dictionaryFile = current_dir + '/../../../data/kata-dasar.txt'
         if not os.path.isfile(dictionaryFile):

@@ -9,7 +9,7 @@ class Test_StopWordRemoverTest(unittest.TestCase):
         return super(Test_StopWordRemoverTest, self).setUp()
 
     def test_getDictionaryPreserveInstance(self):
-        self.assertEqual(self.dictionary, self.stopWordRemover.getDictionary())
+        self.assertEqual(self.dictionary, self.stopWordRemover.get_dictionary())
 
     def test_removeStopWord(self):
         self.assertEquals('pergi sekolah', self.stopWordRemover.remove('pergi ke sekolah'))

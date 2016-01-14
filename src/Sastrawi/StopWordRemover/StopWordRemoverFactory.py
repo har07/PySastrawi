@@ -4,14 +4,14 @@ from Sastrawi.StopWordRemover.StopWordRemover import StopWordRemover
 class StopWordRemoverFactory(object):
     """description of class"""
 
-    def createStopWordRemover(self):
-        stopWords = self.getStopWords()
+    def create_stop_word_remover(self):
+        stopWords = self.get_stop_words()
         dictionary = ArrayDictionary(stopWords)
         stopWordRemover = StopWordRemover(dictionary)
 
         return stopWordRemover
 
-    def getStopWords(self):
+    def get_stop_words(self):
         return ['yang', 'untuk', 'pada', 'ke', 'para', 'namun', 'menurut', 'antara', 'dia', 'dua',
             'ia', 'seperti', 'jika', 'jika', 'sehingga', 'kembali', 'dan', 'tidak', 'ini', 'karena',
             'kepada', 'oleh', 'saat', 'harus', 'sementara', 'setelah', 'belum', 'kami', 'sekitar',

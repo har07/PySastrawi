@@ -19,9 +19,9 @@ class Test_StemmerTest(unittest.TestCase):
         """To prevent overstemming : nilai could have been overstemmed to nila
         if we don't lookup against the dictionary
         """
-        self.stemmer.getDictionary().add('nila')
+        self.stemmer.get_dictionary().add('nila')
         self.assertEquals('nila', self.stemmer.stem('nilai'))
-        self.stemmer.getDictionary().add('nilai')
+        self.stemmer.get_dictionary().add('nilai')
         self.assertEquals('nilai', self.stemmer.stem('nilai'))
 
 if __name__ == '__main__':

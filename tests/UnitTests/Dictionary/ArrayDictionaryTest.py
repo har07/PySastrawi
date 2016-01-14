@@ -7,29 +7,29 @@ class Test_ArrayDictionaryTest(unittest.TestCase):
         self.dictionary = ArrayDictionary()
         return super(Test_ArrayDictionaryTest, self).setUp()
 
-    def test_addAndContain(self):
+    def test_add_and_contain(self):
         self.assertFalse(self.dictionary.contains('word'))
         self.dictionary.add('word')
         self.assertTrue(self.dictionary.contains('word'))
 
-    def test_addCountWord(self):
+    def test_add_count_word(self):
         self.assertEquals(0, self.dictionary.count())
         self.dictionary.add('word')
         self.assertEquals(1, self.dictionary.count())
 
-    def test_addWordIgnoreEmptyString(self):
+    def test_add_word_ignore_empty_string(self):
         self.assertEquals(0, self.dictionary.count())
         self.dictionary.add('')
         self.assertEquals(0, self.dictionary.count())
 
-    def test_addWords(self):
+    def test_add_words(self):
         words = ['word1', 'word2']
-        self.dictionary.addWords(words)
+        self.dictionary.add_words(words)
         self.assertEquals(2, self.dictionary.count())
         self.assertTrue(self.dictionary.contains('word1'))
         self.assertTrue(self.dictionary.contains('word2'))
 
-    def test_constructorPreserveWords(self):
+    def test_constructor_preserve_words(self):
         words = ['word1', 'word2']
         dictionary = ArrayDictionary(words)
         self.assertEquals(2, dictionary.count())

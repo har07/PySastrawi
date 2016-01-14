@@ -5,14 +5,14 @@ class InvalidAffixPairSpecification(object):
     
     @link http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
     """
-    def isSatisfiedBy(self, word):
+    def is_satisfied_by(self, word):
         if re.match(r'^me(.*)kan$', word):
             return False
 
         if word == 'ketahui':
             return False
 
-        invalidAffixes = [r'^ber(.*)i$',
+        invalid_affixes = [r'^ber(.*)i$',
             r'^di(.*)an$',
             r'^ke(.*)i$',
             r'^ke(.*)an$',
@@ -22,7 +22,7 @@ class InvalidAffixPairSpecification(object):
             r'^per(.*)an$']
 
         contains = False
-        for invalidAffix in invalidAffixes:
+        for invalidAffix in invalid_affixes:
             contains = contains or re.match(invalidAffix, word)
 
         return contains

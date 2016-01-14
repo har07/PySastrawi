@@ -8,7 +8,7 @@ class Test_StopWordRemoverFactoryTest(unittest.TestCase):
         return super(Test_StopWordRemoverFactoryTest, self).setUp()
 
     def test_createStopWordRemover(self):
-        self.assertIsInstance(self.factory.createStopWordRemover(), StopWordRemover)
+        self.assertIsInstance(self.factory.create_stop_word_remover(), StopWordRemover)
 
 if __name__ == '__main__':
     unittest.main()

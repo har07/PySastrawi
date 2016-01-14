@@ -9,14 +9,14 @@ class RemovePlainPrefix(object):
     """
 
     def visit(self, context):
-        result = self.remove(context.getCurrentWord())
-        if result != context.getCurrentWord():
-            removedPart = re.sub(result, '', context.getCurrentWord(), 1)
+        result = self.remove(context.current_word)
+        if result != context.current_word:
+            removedPart = re.sub(result, '', context.current_word, 1)
 
-            removal = Removal(self, context.getCurrentWord(), result, removedPart, 'DP')
+            removal = Removal(self, context.current_word, result, removedPart, 'DP')
 
-            context.addRemoval(removal)
-            context.setCurrentWord(result)
+            context.add_removal(removal)
+            context.current_word = result
 
     def remove(self, word):
         """Remove plain prefix : di|ke|se"""

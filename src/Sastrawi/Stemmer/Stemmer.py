@@ -11,31 +11,31 @@ class Stemmer(object):
     """
     def __init__(self, dictionary):
         self.dictionary = dictionary
-        self.visitorProvider = VisitorProvider()
+        self.visitor_provider = VisitorProvider()
 
-    def getDictionary(self):
+    def get_dictionary(self):
         return self.dictionary
 
     def stem(self, text):
         """Stem a text string to its common stem form."""
-        normalizedText = TextNormalizer.normalizeText(text)
+        normalizedText = TextNormalizer.normalize_text(text)
 
         words = normalizedText.split(' ')
         stems = []
 
         for word in words:
-            stems.append(self.stemWord(word))
+            stems.append(self.stem_word(word))
 
         return ' '.join(stems)
 
-    def stemWord(self, word):
+    def stem_word(self, word):
         """Stem a word to its common stem form."""
-        if self.isPlural(word):
-            return self.stemPluralWord(word)
+        if self.is_plural(word):
+            return self.stem_plural_word(word)
         else:
-            return self.stemSingularWord(word)
+            return self.stem_singular_word(word)
 
-    def isPlural(self, word):
+    def is_plural(self, word):
         #-ku|-mu|-nya
         #nikmat-Ku, etc
         matches = re.match(r'^(.*)-(ku|mu|nya|lah|kah|tah|pun)$', word)
@@ -44,7 +44,7 @@ class Stemmer(object):
 
         return word.find('-') != -1
 
-    def stemPluralWord(self, plural):
+    def stem_plural_word(self, plural):
         """Stem a plural word to its common stem form.
         Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 76-77.
 
@@ -66,22 +66,22 @@ class Stemmer(object):
             words[1] = matches.group(2) + '-' + suffix
 
         #berbalas-balasan -> balas
-        rootWord1 = self.stemSingularWord(words[0])
-        rootWord2 = self.stemSingularWord(words[1])
+        rootWord1 = self.stem_singular_word(words[0])
+        rootWord2 = self.stem_singular_word(words[1])
 
         #meniru-nirukan -> tiru
         if not self.dictionary.contains(words[1]) and rootWord2 == words[1]:
-            rootWord2 = self.stemSingularWord('me' + words[1])
+            rootWord2 = self.stem_singular_word('me' + words[1])
 
         if rootWord1 == rootWord2:
             return rootWord1
         else:
             return plural
 
-    def stemSingularWord(self, word):
+    def stem_singular_word(self, word):
         """Stem a singular word to its common stem form."""
-        context = Context(word, self.dictionary, self.visitorProvider)
+        context = Context(word, self.dictionary, self.visitor_provider)
         context.execute()
 
-        return context.getResult()
+        return context.result
 

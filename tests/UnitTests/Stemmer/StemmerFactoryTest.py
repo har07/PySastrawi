@@ -8,13 +8,13 @@ class Test_StemmerFactoryTest(unittest.TestCase):
         return super(Test_StemmerFactoryTest, self).setUp()
 
     def test_createStemmerReturnStemmer(self):
-        stemmer = self.factory.createStemmer()
+        stemmer = self.factory.create_stemmer()
         self.assertIsNotNone(stemmer)
         #self.assertIsInstance(stemmer, Stemmer)
 
     def test_fungsional(self):
         factory = StemmerFactory()
-        stemmer = factory.createStemmer()
+        stemmer = factory.create_stemmer()
 
         sentence = 'malaikat-malaikat-Nya'
         expected = 'malaikat'
@@ -25,7 +25,7 @@ class Test_StemmerFactoryTest(unittest.TestCase):
 
     def test_getWordsFromFile(self):
         factory = StemmerFactory()
-        factory.getWordsFromFile()
+        factory.get_words_from_file()
 
 if __name__ == '__main__':
     unittest.main()

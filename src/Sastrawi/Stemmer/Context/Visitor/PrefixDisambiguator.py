@@ -6,7 +6,7 @@ class PrefixDisambiguator(AbstractDisambiguatePrefixRule):
     def __init__(self, disambiguators):
         super(PrefixDisambiguator, self).__init__()
 
-        self.addDisambiguators(disambiguators)
+        self.add_disambiguators(disambiguators)
 
 
 

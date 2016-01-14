@@ -1,6 +1,6 @@
 from Sastrawi.Stemmer.Context.RemovalInterface import RemovalInterface
 
-class Removal(RemovalInterface):
+class Removal(object):
     """description of class"""
 
     def __init__(self, visitor, subject, result, removedPart, affixType):
@@ -10,19 +10,19 @@ class Removal(RemovalInterface):
         self.removedPart = removedPart
         self.affixType = affixType
 
-    def getVisitor(self):
+    def get_visitor(self):
         return self.visitor
 
-    def getSubject(self):
+    def get_subject(self):
         return self.subject
 
-    def getResult(self):
+    def get_result(self):
         return self.result
 
-    def getRemovedPart(self):
+    def get_removed_part(self):
         return self.removedPart
 
-    def getAffixType(self):
+    def get_affix_type(self):
         return self.affixType
 
 

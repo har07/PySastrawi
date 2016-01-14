@@ -8,7 +8,7 @@ class CachedStemmer(object):
         self.delegatedStemmer = delegatedStemmer
 
     def stem(self, text):
-        normalizedText = TextNormalizer.normalizeText(text)
+        normalizedText = TextNormalizer.normalize_text(text)
 
         words = normalizedText.split(' ')
         stems = []
@@ -23,5 +23,5 @@ class CachedStemmer(object):
 
         return ' '.join(stems)
     
-    def getCache(self):
+    def get_cache(self):
         return self.cache

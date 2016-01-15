@@ -6,6 +6,8 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
+sudo: false
+script: nosetests test --verbose
 notifications:
   email:
     - dev.har07@gmail.com

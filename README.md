@@ -5,14 +5,13 @@ Sastrawi is a simple Python library which allows you to reduce inflected words i
 This is Python port of the original [Sastrawi](https://github.com/sastrawi/sastrawi) project written in PHP.
 
 
-| Master |
-| ------ |
-|[![Build Status](https://travis-ci.org/har07/sastrawi.svg?branch=master)](https://travis-ci.org/har07/sastrawi) |
+[![Build Status](https://travis-ci.org/har07/sastrawi.svg?branch=master)](https://travis-ci.org/har07/sastrawi)
+[![Coverage Status](https://coveralls.io/repos/har07/sastrawi/badge.svg?branch=master&service=github)](https://coveralls.io/github/har07/sastrawi?branch=master)
 
 Cara Install
 -------------
 
-Sastrawi dapat diinstall menggunakan [pip](https://docs.python.org/3.6/installing/index.html), dengan menjalankan perintah berikut di terminal/command prompt : `pip install Sastrawi`
+Sastrawi dapat di*install* menggunakan [pip](https://docs.python.org/3.6/installing/index.html), dengan menjalankan perintah berikut di terminal/command prompt : `pip install Sastrawi`
 
 Penggunaan
 -----------

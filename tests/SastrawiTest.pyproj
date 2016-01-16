@@ -44,29 +44,29 @@
     <Folder Include="UnitTests\Stemmer\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FunctionalTests\Stemmer\StemmerTest.py">
+    <Compile Include="FunctionalTests\Stemmer\stemmer_test.py" />
+    <Compile Include="FunctionalTests\Stemmer\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IntegrationTests\Stemmer\StemmerTest.py">
+    <Compile Include="FunctionalTests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UnitTests\Dictionary\ArrayDictionaryTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitTests\Morphology\Disambiguator\DisambiguatorPrefixRule1Test.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitTests\Morphology\InvalidAffixPairSpecificationTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitTests\Stemmer\StemmerFactoryTest.py" />
-    <Compile Include="UnitTests\Stemmer\StemmerTest.py" />
-    <Compile Include="UnitTests\StopWordRemover\StopWordRemoverFactoryTest.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UnitTests\StopWordRemover\StopWordRemoverTest.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="IntegrationTests\Stemmer\stemmer_test.py" />
+    <Compile Include="IntegrationTests\Stemmer\__init__.py" />
+    <Compile Include="IntegrationTests\__init__.py" />
+    <Compile Include="UnitTests\Dictionary\array_dictionary_test.py" />
+    <Compile Include="UnitTests\Dictionary\__init__.py" />
+    <Compile Include="UnitTests\Morphology\Disambiguator\disambiguator_prefix_rule1_test.py" />
+    <Compile Include="UnitTests\Morphology\Disambiguator\__init__.py" />
+    <Compile Include="UnitTests\Morphology\invalid_affix_pair_specification_test.py" />
+    <Compile Include="UnitTests\Morphology\__init__.py" />
+    <Compile Include="UnitTests\Stemmer\stemmer_factory_test.py" />
+    <Compile Include="UnitTests\Stemmer\stemmer_test.py" />
+    <Compile Include="UnitTests\Stemmer\__init__.py" />
+    <Compile Include="UnitTests\StopWordRemover\stop_word_remover_factory_test.py" />
+    <Compile Include="UnitTests\StopWordRemover\stop_word_remover_test.py" />
+    <Compile Include="UnitTests\StopWordRemover\__init__.py" />
+    <Compile Include="UnitTests\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="UnitTests\Stemmer\StemmerFactoryTest.pyc" />

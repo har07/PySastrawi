@@ -8,7 +8,7 @@ python:
 sudo: false
 install:
   - pip install coveralls
-script: nosetests tests --verbose -with-coverage
+script: nosetests tests --verbose --with-coverage
 after-success:
   coveralls
 notifications:

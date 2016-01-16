@@ -31,7 +31,7 @@ setup(
     url='https://github.com/har07/sastrawi',
 
     # Author details
-    author='Hanif',
+    author='Hanif Amal Robbani',
     author_email='dev.har07@gmail.com',
 
     # Choose your license
@@ -47,7 +47,7 @@ setup(
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
-        'Topic :: Natural Language Processing :: Stemming',
+        'Topic :: Text Processing :: Linguistic',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: MIT License',

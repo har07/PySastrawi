@@ -10,7 +10,7 @@ install:
   - pip install coveralls
 script: nosetests tests --verbose --with-coverage
 after-success:
-  coveralls
+  - coveralls
 notifications:
   email:
     - dev.har07@gmail.com

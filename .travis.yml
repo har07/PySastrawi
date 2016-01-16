@@ -9,7 +9,7 @@ install:
   - pip install python-coveralls
   - pip install coveralls
 script: nosetests tests --verbose --with-coverage
-after-success:
+after_success:
   - coveralls
 notifications:
   email:

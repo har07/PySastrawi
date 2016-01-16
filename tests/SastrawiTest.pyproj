@@ -68,10 +68,6 @@
     <Compile Include="UnitTests\StopWordRemover\__init__.py" />
     <Compile Include="UnitTests\__init__.py" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="UnitTests\Stemmer\StemmerFactoryTest.pyc" />
-    <Content Include="UnitTests\Stemmer\StemmerTest.pyc" />
-  </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
 </Project>

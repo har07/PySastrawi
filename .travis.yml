@@ -6,7 +6,7 @@ python:
   - "3.4"
   - "3.5"
 sudo: false
-script: nosetests tests --verbose -with-coverage
+script: nosetests tests --verbose --with-coverage
 notifications:
   email:
     - dev.har07@gmail.com

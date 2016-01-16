@@ -7,8 +7,10 @@ python:
   - "3.5"
 sudo: false
 install:
-  - pip install coverage
+  - pip install coveralls
 script: nosetests tests --verbose -with-coverage
+after-success:
+  coveralls
 notifications:
   email:
     - dev.har07@gmail.com

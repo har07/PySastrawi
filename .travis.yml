@@ -12,5 +12,4 @@ script: nosetests tests --verbose --with-coverage
 after_success:
   - coveralls
 notifications:
-  email:
-    - dev.har07@gmail.com
+  email: false

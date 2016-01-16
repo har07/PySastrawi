@@ -11,7 +11,7 @@ This is Python port of the original [Sastrawi](https://github.com/sastrawi/sastr
 Cara Install
 -------------
 
-Sastrawi dapat di*install* menggunakan [pip](https://docs.python.org/3.6/installing/index.html), dengan menjalankan perintah berikut di terminal/command prompt : `pip install Sastrawi`
+Sastrawi dapat di-*install* menggunakan [pip](https://docs.python.org/3.6/installing/index.html), dengan menjalankan perintah berikut di terminal/command prompt : `pip install Sastrawi`
 
 Penggunaan
 -----------

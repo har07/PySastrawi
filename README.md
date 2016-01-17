@@ -7,6 +7,7 @@ This is Python port of the original [Sastrawi](https://github.com/sastrawi/sastr
 
 [![Build Status](https://travis-ci.org/har07/sastrawi.svg?branch=master)](https://travis-ci.org/har07/sastrawi)
 [![Coverage Status](https://coveralls.io/repos/har07/sastrawi/badge.svg?branch=master&service=github)](https://coveralls.io/github/har07/sastrawi?branch=master)
+[![PyPI version](https://badge.fury.io/py/Sastrawi.svg)](https://badge.fury.io/py/Sastrawi)
 
 Cara Install
 -------------

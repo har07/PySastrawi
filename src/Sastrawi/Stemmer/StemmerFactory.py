@@ -32,7 +32,7 @@ class StemmerFactory(object):
 
     def get_words_from_file(self):
         current_dir = os.path.dirname(os.path.realpath(__file__))
-        dictionaryFile = current_dir + '/../../../data/kata-dasar.txt'
+        dictionaryFile = current_dir + '/data/kata-dasar.txt'
         if not os.path.isfile(dictionaryFile):
             raise RuntimeError('Dictionary file is missing. It seems that your installation is corrupted.')
 

@@ -27,6 +27,7 @@
     <Folder Include="Dictionary\" />
     <Folder Include="Morphology\" />
     <Folder Include="Morphology\Disambiguator\" />
+    <Folder Include="Stemmer\data\" />
     <Folder Include="StopWordRemover\" />
     <Folder Include="Stemmer\Cache\" />
     <Folder Include="Stemmer\Context\Visitor\" />
@@ -245,6 +246,10 @@
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Stemmer\data\kata-dasar.original.txt" />
+    <Content Include="Stemmer\data\kata-dasar.txt" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />

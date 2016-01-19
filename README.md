@@ -38,6 +38,14 @@ print(stemmer.stem('Mereka meniru-nirukannya'))
 # mereka tiru
 ```
 
+
+Lisensi
+--------
+
+Lisensi Sastrawi Python adalah MIT License (MIT).
+
+Project ini mengandung kamus kata dasar yang berasal dari Kateglo dengan lisensi [CC-BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+
 Informasi Lebih Lanjut
 ----------------------
 

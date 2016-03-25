@@ -40,6 +40,13 @@ Run the following commands in *Python interactive terminal* :
     print(stemmer.stem('Mereka meniru-nirukannya'))
     # mereka tiru
 
+Demo
+---------
+
+Live demo : https://pysastrawi-demo.appspot.com/
+
+Repository : https://github.com/har07/pystastrawi-demo
+
 More Info
 ---------
 
@@ -50,7 +57,7 @@ More Info
 .. _pip: https://docs.python.org/3.6/installing/index.html
 .. _Sastrawi PHP Repository page: https://github.com/sastrawi/sastrawi
 
-.. |Build Status| image:: https://travis-ci.org/har07/sastrawi.svg?branch=master
-   :target: https://travis-ci.org/har07/sastrawi
+.. |Build Status| image:: https://travis-ci.org/har07/PySastrawi.svg?branch=master
+   :target: https://travis-ci.org/har07/PySastrawi
 .. |Coverage Status| image:: https://coveralls.io/repos/har07/sastrawi/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/har07/sastrawi?branch=master

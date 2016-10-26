@@ -13,7 +13,9 @@ class Test_StemmerTest(unittest.TestCase):
                 'bangun', 'fitnah', 'vonis',
                 'baru', 'ajar',
                 'tangkap', 'kupas',
-                'minum', 'pukul', 'cinta', 'dua', 'jauh', 'ziarah', 'nuklir', 'gila', 'hajar', 'qasar', 'udara',
+                'minum', 'pukul',
+                'cinta', 'dua', 'dahulu', 'jauh', 'jarah', 'ziarah',
+                'nuklir', 'nasihat', 'gila', 'hajar', 'qasar', 'udara',
                 'populer', 'warna', 'yoga', 'adil', 'rumah', 'muka', 'labuh', 'tarung',
                 'tebar', 'indah', 'daya', 'untung', 'sepuluh', 'ekonomi', 'makmur', 'telah', 'serta',
                 'percaya', 'pengaruh', 'kritik', 'seko', 'sekolah', 'tahan', 'capa', 'capai',
@@ -22,7 +24,8 @@ class Test_StemmerTest(unittest.TestCase):
                 'sembunyi', 'langgan', 'laku', 'baik', 'terang', 'iman', 'bisik', 'taat', 'puas', 'makan',
                 'nyala', 'nyanyi', 'nyata', 'nyawa', 'rata', 'lembut', 'ligas',
                 'budaya', 'karya', 'ideal', 'final',
-                'taat', 'tiru', 'sepak', 'kuasa', 'malaikat', 'nikmat', # sastrawi additional rules
+                # sastrawi additional rules
+                'taat', 'tiru', 'sepak', 'kuasa', 'malaikat', 'nikmat', 'stabil', 'transkripsi',
                 'lewat', 'nganga', 'allah',
             ]
         )
@@ -73,7 +76,8 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['kesakitan', 'sakit'])
         data.append(['sesuap', 'suap'])
 
-        #data.append(['teriakanmu', 'teriak' # wtf? kok jadi teria?])
+        #data.append(['teriakanmu', 'teriak']) # wtf? kok jadi ria?
+        #teriakanmu -> te-ria-kan-mu
 
         # template formulas for derivation prefix rules (disambiguation) #
 
@@ -123,8 +127,8 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['memvonis', 'vonis'])
 
         # rule 12 : mempe{r|l} -> mem-pe
-        data.append(['memperbaru', 'baru'])
-        data.append(['mempelajar', 'ajar'])
+        data.append(['memperbarui', 'baru'])
+        data.append(['mempelajari', 'ajar'])
 
         # rule 13a : mem{rV|V} -> mem{rV|V}
         data.append(['meminum', 'minum'])
@@ -191,14 +195,13 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['pemukul', 'pukul'])
 
         # rule 27 : men{c|d|j|z} -> men-{c|d|j|z}
-        # TODO : should find more relevant examples
         data.append(['pencinta', 'cinta'])
-        data.append(['pendua', 'dua'])
-        data.append(['penjauh', 'jauh'])
+        data.append(['pendahulu', 'dahulu'])
+        data.append(['penjarah', 'jarah'])
         data.append(['penziarah', 'ziarah'])
 
         # rule 28a : pen{V} -> pe-n{V}
-        data.append(['penuklir', 'nuklir'])
+        data.append(['penasihat', 'nasihat'])
 
         # rule 28b : pen{V} -> pe-t{V}
         data.append(['penangkap', 'tangkap'])
@@ -219,7 +222,7 @@ class Test_StemmerTest(unittest.TestCase):
 
         # rule 32 : pelV -> pe-lV except pelajar -> ajar
         data.append(['pelajar', 'ajar'])
-        data.append(['pelabuh', 'labuh'])
+        data.append(['pelabuhan', 'labuh'])
 
         # rule 33 : peCerV -> per-erV where C != {r|w|y|l|m|n}
         # TODO : find the examples
@@ -349,6 +352,9 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['finalisasi', 'final'])
 
         # sastrawi additional rules
+        data.append(['penstabilan', 'stabil'])
+        data.append(['pentranskripsi', 'transkripsi'])
+
         data.append(['mentaati', 'taat'])
         data.append(['meniru-nirukan', 'tiru'])
         data.append(['menyepak-nyepak', 'sepak'])

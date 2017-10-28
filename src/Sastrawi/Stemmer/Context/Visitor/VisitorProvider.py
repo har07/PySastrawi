@@ -86,8 +86,8 @@ class VisitorProvider(object):
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule15a(), DisambiguatorPrefixRule15b()]))
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule16()]))
 
-        disambiguators17 = [DisambiguatorPrefixRule17a(), DisambiguatorPrefixRule17b(), \
-            DisambiguatorPrefixRule17c(), DisambiguatorPrefixRule17d()]
+        disambiguators17 = [DisambiguatorPrefixRule17a(), DisambiguatorPrefixRule17b(), DisambiguatorPrefixRule17c(),
+                            DisambiguatorPrefixRule17d()]
         self.prefix_pisitors.append(PrefixDisambiguator(disambiguators17))
 
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule18a(), DisambiguatorPrefixRule18b()]))
@@ -102,8 +102,7 @@ class VisitorProvider(object):
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule28a(), DisambiguatorPrefixRule28b()]))
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule29()]))
 
-        disambiguators30 = [DisambiguatorPrefixRule30a(), DisambiguatorPrefixRule30b(), \
-            DisambiguatorPrefixRule30c()]
+        disambiguators30 = [DisambiguatorPrefixRule30a(), DisambiguatorPrefixRule30b(), DisambiguatorPrefixRule30c()]
         self.prefix_pisitors.append(PrefixDisambiguator(disambiguators30))
 
         self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule31a(), DisambiguatorPrefixRule31b()]))

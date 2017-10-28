@@ -1,8 +1,5 @@
 class DictionaryInterface(object):
-    """description of class"""
+    """Interface definition of dictionary"""
 
     def contains(self, word):
-        pass
-
-
-
+        raise NotImplementedError('you must implement this method manually')

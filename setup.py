@@ -17,18 +17,18 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='Sastrawi',
+    name='PySastrawi',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.1',
+    version='1.1.0',
 
     description='Library for stemming Indonesian (Bahasa) text',
     long_description='Library for stemming Indonesian (Bahasa) text',
 
     # The project's main homepage.
-    url='https://github.com/har07/sastrawi',
+    url='https://github.com/har07/PySastrawi',
 
     # Author details
     author='Hanif Amal Robbani',

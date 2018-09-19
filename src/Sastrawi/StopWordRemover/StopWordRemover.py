@@ -13,7 +13,3 @@ class StopWordRemover(object):
         stopped_words = [word for word in words if not self.dictionary.contains(word) and len(word) >= min_length]
 
         return ' '.join(stopped_words)
-
-
-
-

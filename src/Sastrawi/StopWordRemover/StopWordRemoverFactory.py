@@ -4,8 +4,11 @@ from Sastrawi.StopWordRemover.StopWordRemover import StopWordRemover
 class StopWordRemoverFactory(object):
     """description of class"""
 
-    def create_stop_word_remover(self):
-        stopWords = self.get_stop_words()
+    def create_stop_word_remover(self, words = None):
+        if words is None:
+            stopWords = self.get_stop_words()
+        else:
+            stopWords = words
         dictionary = ArrayDictionary(stopWords)
         stopWordRemover = StopWordRemover(dictionary)
 

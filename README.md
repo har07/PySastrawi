@@ -8,6 +8,7 @@ This is Python port of the original [Sastrawi](https://github.com/sastrawi/sastr
 [![Build Status](https://travis-ci.org/har07/PySastrawi.svg?branch=master)](https://travis-ci.org/har07/PySastrawi)
 [![Coverage Status](https://coveralls.io/repos/github/har07/PySastrawi/badge.svg?branch=master)](https://coveralls.io/github/har07/PySastrawi?branch=master)
 [![PyPI version](https://badge.fury.io/py/PySastrawi.svg)](https://badge.fury.io/py/PySastrawi)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhar07%2FPySastrawi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhar07%2FPySastrawi?ref=badge_shield)
 
 Cara Install
 -------------
@@ -56,3 +57,7 @@ Informasi Lebih Lanjut
 ----------------------
 
 - [Sastrawi PHP Repository page](https://github.com/sastrawi/sastrawi)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhar07%2FPySastrawi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhar07%2FPySastrawi?ref=badge_large)

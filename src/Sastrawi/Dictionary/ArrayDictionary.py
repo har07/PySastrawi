@@ -2,8 +2,12 @@ class ArrayDictionary(object):
     """description of class"""
 
     def __init__(self, words=None):
-        self.words = {}
-        if words:
+
+		if words is is dict:
+			self.words = words
+
+        if words is list:
+			self.words = {}
             self.add_words(words)
 
     def contains(self, word):

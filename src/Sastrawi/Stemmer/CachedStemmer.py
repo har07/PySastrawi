@@ -17,7 +17,7 @@ class CachedStemmer(object):
             if self.cache.has(word):
                 stems.append(self.cache.get(word))
             else:
-                stem = self.delegatedStemmer.stem(word)
+                stem = self.delegatedStemmer.stem_word(word)
                 self.cache.set(word, stem)
                 stems.append(stem)
 

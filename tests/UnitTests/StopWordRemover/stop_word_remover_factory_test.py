@@ -15,6 +15,17 @@ class Test_StopWordRemoverFactoryTest(unittest.TestCase):
         sremover = self.factory.create_stop_word_remover()
         self.assertEqual('pergi sekolah', sremover.remove('pergi ke sekolah yang'))
         self.assertEqual('makan rumah', sremover.remove('makan di rumah yang'))
+    
+    def test_tokens_stopwordRemoval(self):
+        tokens = ['pergi', 'ke', 'sekolah', 'yang', 'bagus', 'adalah', 'impian']
+        sremover = self.factory.create_stop_word_remover()
+        clean_tokens = sremover.remove_tokens(tokens)
+        text = ' '.join(clean_tokens)
+        self.assertEquals('pergi sekolah bagus impian', text)
+        self.assertEqual('pergi', clean_tokens[0])
+        self.assertEqual('sekolah', clean_tokens[1])
+        self.assertEqual('bagus', clean_tokens[2])
+        self.assertEqual('impian', clean_tokens[3])
 
     def test_execution_time(self):
         start = time.time()

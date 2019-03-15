@@ -46,5 +46,24 @@ class Test_StemmerFactoryTest(unittest.TestCase):
         factory = StemmerFactory()
         factory.get_words_from_file()
 
+    def test_word_stemming(self):
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+        self.assertEqual('besar', stemmer.stem('terbesar'))
+        self.assertEqual('abai', stemmer.stem('diabaikan'))
+
+    def test_tokens_stemming(self):
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+        tokens = ['perekonomian', 'indonesia', 'sedang', 'dalam', 'pertumbuhan' ,'yang', 'membanggakan']
+        clean_tokens = stemmer.stem_tokens(tokens)
+        self.assertEqual('ekonomi', clean_tokens[0])
+        self.assertEqual('indonesia', clean_tokens[1])
+        self.assertEqual('sedang', clean_tokens[2])
+        self.assertEqual('dalam', clean_tokens[3])
+        self.assertEqual('tumbuh', clean_tokens[4])
+        self.assertEqual('yang', clean_tokens[5])
+        self.assertEqual('bangga', clean_tokens[6])
+
 if __name__ == '__main__':
     unittest.main()

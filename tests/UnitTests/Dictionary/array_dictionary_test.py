@@ -36,5 +36,12 @@ class Test_ArrayDictionaryTest(unittest.TestCase):
         self.assertTrue(dictionary.contains('word1'))
         self.assertTrue(dictionary.contains('word2'))
 
+    def test_dict_param(self):
+        dictionary = ArrayDictionary({'word1':'word1', 'word2':'word2'})
+        self.assertTrue(dictionary.contains('word1'))
+        self.assertTrue(dictionary.contains('word2'))
+        self.assertFalse(dictionary.contains('word3'))
+        self.assertEqual(2, dictionary.count())
+
 if __name__ == '__main__':
     unittest.main()

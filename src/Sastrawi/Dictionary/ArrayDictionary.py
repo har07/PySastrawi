@@ -1,11 +1,11 @@
 class ArrayDictionary(object):
     """description of class"""
+    words = {}
 
     def __init__(self, words=None):
         if words is dict:
             self.words = words
         elif words is list:
-            self.words = {}
             self.add_words(words)
 
     def contains(self, word):
@@ -23,8 +23,3 @@ class ArrayDictionary(object):
         if not word or word.strip() == '':
             return
         self.words[word]=word
-
-
-
-
-

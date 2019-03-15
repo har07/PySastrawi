@@ -7,7 +7,7 @@ class CachedStemmer(object):
         self.cache = cache
         self.delegatedStemmer = delegatedStemmer
 
-    def stem(self, text: str):
+    def stem(self, text):
         normalizedText = TextNormalizer.normalize_text(text)
 
         words = normalizedText.split(' ')

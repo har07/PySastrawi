@@ -7,7 +7,7 @@ class CachedStemmer(object):
         self.cache = cache
         self.delegatedStemmer = delegatedStemmer
 
-    def stem(self, text):
+    def stem(self, text: str):
         normalizedText = TextNormalizer.normalize_text(text)
 
         words = normalizedText.split(' ')
@@ -30,6 +30,14 @@ class CachedStemmer(object):
             stem = self.delegatedStemmer.stem_word(word)
             self.cache.set(word, stem)
             return stem
+
+    # Stemming word in Tokens
+    # @author Mufid Jamaluddin <mufidjamaluddin@outlook.com>
+    def stem_tokens(self, tokens: list):
+        stemmed_tokens = []
+        for token in tokens:
+            stemmed_tokens.append(self.stem_word(token))
+        return stemmed_tokens
 
     def get_cache(self):
         return self.cache

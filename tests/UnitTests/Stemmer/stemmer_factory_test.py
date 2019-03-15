@@ -55,7 +55,7 @@ class Test_StemmerFactoryTest(unittest.TestCase):
     def test_tokens_stemming(self):
         factory = StemmerFactory()
         stemmer = factory.create_stemmer()
-        tokens = ['perekonomian', 'indonesia', 'sedang', 'dalam', 'pertumbuhan' ,'yang', 'membanggakan']
+        tokens = ['perekonomian', '', 'indonesia', 'sedang', ' ', 'dalam', 'pertumbuhan' ,'yang', 'membanggakan']
         clean_tokens = stemmer.stem_tokens(tokens)
         self.assertEqual('ekonomi', clean_tokens[0])
         self.assertEqual('indonesia', clean_tokens[1])

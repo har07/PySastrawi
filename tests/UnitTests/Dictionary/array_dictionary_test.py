@@ -43,5 +43,9 @@ class Test_ArrayDictionaryTest(unittest.TestCase):
         self.assertFalse(dictionary.contains('word3'))
         self.assertEqual(2, dictionary.count())
 
+    def test_non_dict_list(self):
+        dictionary = ArrayDictionary('$$%&**&(^&')
+        self.assertTrue(0, dictionary.count())
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,12 +1,15 @@
 class ArrayDictionary(object):
     """description of class"""
-    words = {}
 
     def __init__(self, words=None):
-        if words is dict:
+        if words is None:
+            self.words = {}
+        elif type(words) is dict:
             self.words = words
-        elif words is list:
+        elif type(words) is list:
             self.add_words(words)
+        else:
+            self.words = {}
 
     def contains(self, word):
         return word in self.words
@@ -22,4 +25,4 @@ class ArrayDictionary(object):
         """Add a word to the dictionary"""
         if not word or word.strip() == '':
             return
-        self.words[word]=word
+        self.words[word] = word

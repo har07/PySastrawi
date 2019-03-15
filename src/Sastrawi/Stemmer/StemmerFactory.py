@@ -24,7 +24,7 @@ class StemmerFactory(object):
 
         return cachedStemmer
 
-	@functools.lru_cache(maxsize=32)
+	@functools.lru_cache(maxsize=640)
 	def get_prod_words_dictionary(self):
 		words = self.get_words_from_file()
 		dictionary = ArrayDictionary(words)

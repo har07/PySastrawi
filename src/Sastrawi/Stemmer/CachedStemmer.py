@@ -36,6 +36,8 @@ class CachedStemmer(object):
     def stem_tokens(self, tokens):
         stemmed_tokens = []
         for token in tokens:
+            if not token or token.strip() == '':
+                continue
             stemmed_tokens.append(self.stem_word(token))
         return stemmed_tokens
 

@@ -1,5 +1,5 @@
 import os
-import functools
+from cachetools import cached, LRUCache
 from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
 from Sastrawi.Stemmer.Stemmer import Stemmer
 from Sastrawi.Stemmer.CachedStemmer import CachedStemmer
@@ -24,7 +24,7 @@ class StemmerFactory(object):
 
         return cachedStemmer
 
-    @functools.lru_cache(maxsize=640)
+    @cached(cache=LRUCache(maxsize=32))
     def get_prod_words_dictionary(self):
         words = self.get_words_from_file()
         dictionary = ArrayDictionary(words)

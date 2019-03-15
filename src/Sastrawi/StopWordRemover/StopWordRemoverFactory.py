@@ -1,5 +1,5 @@
 import os
-import functools
+from cachetools import cached, LRUCache
 from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
 from Sastrawi.StopWordRemover.StopWordRemover import StopWordRemover
 
@@ -16,7 +16,7 @@ class StopWordRemoverFactory(object):
         stopWordRemover = StopWordRemover(dictionary)
         return stopWordRemover
 
-    @functools.lru_cache(maxsize=32)
+    @cached(cache=LRUCache(maxsize=8))
     def get_prod_stop_word_dictionary(self):
         stopWords = self.get_stop_words()
         return ArrayDictionary(stopWords)

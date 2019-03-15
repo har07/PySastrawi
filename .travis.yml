@@ -9,6 +9,7 @@ sudo: false
 install:
   - pip install python-coveralls
   - pip install coveralls
+  - pip install cachetools
 script: nosetests tests --verbose --with-coverage
 after_success:
   - coveralls

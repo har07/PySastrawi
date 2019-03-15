@@ -54,8 +54,8 @@ class Test_StemmerFactoryTest(unittest.TestCase):
     # Test Stemming dengan isDev=True (No Cache)
     # @author Mufid Jamaluddin
     def test_word_stemmingdev(self):
-        factory = StemmerFactory(isDev=True)
-        stemmer = factory.create_stemmer()
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer(isDev=True)
         self.assertEqual('besar', stemmer.stem('terbesar'))
         self.assertEqual('abai', stemmer.stem('diabaikan'))
 

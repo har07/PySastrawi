@@ -1,5 +1,9 @@
-class DictionaryInterface(object):
-    """Interface definition of dictionary"""
+from abc import ABCMeta, abstractmethod
 
+class DictionaryInterface:
+    """Interface definition of dictionary"""
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
     def contains(self, word):
-        raise NotImplementedError('you must implement this method manually')
+        pass

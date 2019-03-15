@@ -44,7 +44,8 @@ class Test_ArrayDictionaryTest(unittest.TestCase):
         self.assertTrue(dictionary.contains('word2'))
         self.assertFalse(dictionary.contains('word3'))
         self.assertEqual(2, dictionary.count())
-        dictionary.add_words('word3')
+        dictionary.add('word3')
+        dictionary.add(' ')
         self.assertTrue(dictionary.contains('word3'))
         self.assertEqual(3, dictionary.count())
 

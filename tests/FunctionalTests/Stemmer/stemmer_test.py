@@ -328,8 +328,8 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['menahan', 'tahan'])
 
         # test stem multiple sentences
-        multipleSentence1 = 'Cinta telah bertebaran.Keduanya saling mencintai.';
-        multipleSentence2 = "(Cinta telah bertebaran)\n\n\n\nKeduanya saling mencintai.";
+        multipleSentence1 = 'Cinta telah bertebaran.Keduanya saling mencintai.'
+        multipleSentence2 = "(Cinta telah bertebaran)\n\n\n\nKeduanya saling mencintai."
         data.append([multipleSentence1, 'cinta telah tebar dua saling cinta'])
         data.append([multipleSentence2, 'cinta telah tebar dua saling cinta'])
 

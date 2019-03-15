@@ -3,7 +3,7 @@ class ArrayDictionary(object):
 
     def __init__(self, words=None):
 
-		if words is is dict:
+		if words is dict:
 			self.words = words
 
         if words is list:

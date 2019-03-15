@@ -22,6 +22,14 @@ class CachedStemmer(object):
                 stems.append(stem)
 
         return ' '.join(stems)
-    
+
+    def stem_word(self, word):
+        if self.cache.has(word):
+            return self.cache.get(word)
+        else:
+            stem = self.delegatedStemmer.stem_word(word)
+            self.cache.set(word, stem)
+            return stem
+
     def get_cache(self):
         return self.cache

@@ -12,10 +12,10 @@ class StemmerFactory(object):
     def create_stemmer(self, isDev=False):
         """ Returns Stemmer instance """
         if isDev:
-			words = self.get_words_from_file()
-			dictionary = ArrayDictionary(words)
+            words = self.get_words_from_file()
+            dictionary = ArrayDictionary(words)
         else:
-			dictionary = self.get_prod_words_dictionary()
+            dictionary = self.get_prod_words_dictionary()
 
         stemmer = Stemmer(dictionary)
 
@@ -24,11 +24,11 @@ class StemmerFactory(object):
 
         return cachedStemmer
 
-	@functools.lru_cache(maxsize=640)
-	def get_prod_words_dictionary(self):
-		words = self.get_words_from_file()
-		dictionary = ArrayDictionary(words)
-		return dictionary
+    @functools.lru_cache(maxsize=640)
+    def get_prod_words_dictionary(self):
+        words = self.get_words_from_file()
+        dictionary = ArrayDictionary(words)
+        return dictionary
 
     #def get_words(self, isDev=False):
         #if isDev or callable(getattr(self, 'apc_fetch')):
@@ -47,9 +47,7 @@ class StemmerFactory(object):
         if not os.path.isfile(dictionaryFile):
             raise RuntimeError('Dictionary file is missing. It seems that your installation is corrupted.')
 
-        content = {}
+        text = ''
         with open(dictionaryFile, 'r') as f:
-            word = f.read()
-            content.words[word] = word
-        
-        return content
+            text = f.read()
+        return text.split('\n')

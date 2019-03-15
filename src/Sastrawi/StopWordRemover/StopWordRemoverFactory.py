@@ -16,10 +16,10 @@ class StopWordRemoverFactory(object):
         stopWordRemover = StopWordRemover(dictionary)
         return stopWordRemover
 
-	@functools.lru_cache(maxsize=32)
-	def get_prod_stop_word_dictionary(self):
-		stopWords = self.get_stop_words()
-		return ArrayDictionary(stopWords)
+    @functools.lru_cache(maxsize=32)
+    def get_prod_stop_word_dictionary(self):
+        stopWords = self.get_stop_words()
+        return ArrayDictionary(stopWords)
 
     def get_stop_words(self):
         current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -28,9 +28,7 @@ class StopWordRemoverFactory(object):
         if not os.path.isfile(dictionaryFile):
             raise RuntimeError('Stopword file is missing. It seems that your installation is corrupted.')
 
-        content = {}
+        text = ''
         with open(dictionaryFile, 'r') as f:
-            word = f.read()
-            content.words[word] = word
-        
-        return content
+            text = f.read()
+        return text.split('\n')

@@ -33,7 +33,7 @@ class CachedStemmer(object):
 
     # Stemming word in Tokens
     # @author Mufid Jamaluddin <mufidjamaluddin@outlook.com>
-    def stem_tokens(self, tokens: list):
+    def stem_tokens(self, tokens):
         stemmed_tokens = []
         for token in tokens:
             stemmed_tokens.append(self.stem_word(token))

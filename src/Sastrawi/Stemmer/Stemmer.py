@@ -29,7 +29,6 @@ class Stemmer(object):
 
         return ' '.join(stems)
 
-    @cached(cache=LRUCache(maxsize=128))
     def stem_word(self, word):
         """Stem a word to its common stem form."""
         if self.is_plural(word):

@@ -1,10 +1,11 @@
 import re
 
+
 class DisambiguatorPrefixRule24(object):
     """Disambiguate Prefix Rule 24
     Rule 24 : perCAerV -> per-CAerV where C != 'r'
     """
-    
+
     def disambiguate(self, word):
         """Disambiguate Prefix Rule 24
         Rule 24 : perCAerV -> per-CAerV where C != 'r'

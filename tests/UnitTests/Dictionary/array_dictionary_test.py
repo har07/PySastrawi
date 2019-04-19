@@ -36,5 +36,22 @@ class Test_ArrayDictionaryTest(unittest.TestCase):
         self.assertTrue(dictionary.contains('word1'))
         self.assertTrue(dictionary.contains('word2'))
 
+    # Test ArrayDictionary dengan tipe data dict
+    # @author Mufid Jamaluddin
+    def test_dict_param(self):
+        dictionary = ArrayDictionary({'word1':'word1', 'word2':'word2'})
+        self.assertTrue(dictionary.contains('word1'))
+        self.assertTrue(dictionary.contains('word2'))
+        self.assertFalse(dictionary.contains('word3'))
+        self.assertEqual(2, dictionary.count())
+        dictionary.add('word3')
+        dictionary.add(' ')
+        self.assertTrue(dictionary.contains('word3'))
+        self.assertEqual(3, dictionary.count())
+
+    def test_non_dict_list(self):
+        dictionary = ArrayDictionary('$$%&**&(^&')
+        self.assertEqual(0, dictionary.count())
+
 if __name__ == '__main__':
     unittest.main()

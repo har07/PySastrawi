@@ -10,12 +10,12 @@ class StopWordRemover(object):
     def remove(self, text):
         """Remove stop words."""
         words = text.split(' ')
-        for word in words:
-            if self.dictionary.contains(word):
-                words.remove(word)
+        stopped_words = [word for word in words if not self.dictionary.contains(word)]
 
-        return ' '.join(words)
+        return ' '.join(stopped_words)
 
-
-
-
+    # Remove Stopword in Tokens
+    # @author Mufid Jamaluddin <mufidjamaluddin@outlook.com>
+    def remove_tokens(self, tokens):
+        clean_tokens = [token for token in tokens if not self.dictionary.contains(token)]
+        return clean_tokens

@@ -14,6 +14,8 @@ class StopWordRemover(object):
 
         return ' '.join(stopped_words)
 
-
-
-
+    # Remove Stopword in Tokens
+    # @author Mufid Jamaluddin <mufidjamaluddin@outlook.com>
+    def remove_tokens(self, tokens):
+        clean_tokens = [token for token in tokens if not self.dictionary.contains(token)]
+        return clean_tokens

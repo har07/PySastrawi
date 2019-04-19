@@ -161,4 +161,3 @@ class Context(object):
         for removal in self.removals:
             if removal.get_affix_type() == 'DP':
                 self.removals.remove(removal)
-

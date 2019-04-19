@@ -2,6 +2,7 @@ import re
 from Sastrawi.Stemmer.Context.Visitor.VisitorProvider import VisitorProvider
 from Sastrawi.Stemmer.Filter import TextNormalizer
 from Sastrawi.Stemmer.Context.Context import Context
+from cachetools import cached, LRUCache
 
 class Stemmer(object):
     """Indonesian Stemmer.
@@ -34,6 +35,16 @@ class Stemmer(object):
             return self.stem_plural_word(word)
         else:
             return self.stem_singular_word(word)
+
+    # Stemming word in Tokens
+    # @author Mufid Jamaluddin <mufidjamaluddin@outlook.com>
+    def stem_tokens(self, tokens):
+        stemmed_tokens = []
+        for token in tokens:
+            if not token or token.strip() == '':
+                continue
+            stemmed_tokens.append(self.stem_word(token))
+        return stemmed_tokens
 
     def is_plural(self, word):
         #-ku|-mu|-nya

@@ -20,21 +20,18 @@ Penggunaan
 Jalankan baris-baris kode berikut di *Python interactive terminal* :
 
 ```python
-# import StemmerFactory class
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+import Sastrawi.stemmer as stemmer
 
-# create stemmer
-factory = StemmerFactory()
-stemmer = factory.create_stemmer()
+stemmer = stemmer.Stemmer()
 
 # stemming process
-sentence = 'Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan'
-output   = stemmer.stem(sentence)
+sentences = ['Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan',
+            'Mereka meniru-nirukannya']
 
-print(output)
+for sentence in sentences:
+    print(stemmer.stem(sentence))
+
 # ekonomi indonesia sedang dalam tumbuh yang bangga
-
-print(stemmer.stem('Mereka meniru-nirukannya'))
 # mereka tiru
 ```
 
@@ -42,7 +39,6 @@ Demo
 --------
 
 Live demo URL : https://pysastrawi-demo.appspot.com/
-
 Repository : https://github.com/har07/pystastrawi-demo
 
 Lisensi

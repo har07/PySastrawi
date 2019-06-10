@@ -12,17 +12,10 @@ class Context(object):
 
         self.process_is_stopped = False
         self.removals = []
-        self.visitors = []
-        self.suffix_visitors = []
-        self.prefix_pisitors = []
+        self.visitors = visitor_provider.visitors
+        self.suffix_visitors = visitor_provider.suffix_visitors
+        self.prefix_pisitors = visitor_provider.prefix_visitors
         self.result = ''
-
-        self.init_visitors()
-
-    def init_visitors(self):
-        self.visitors = self.visitor_provider.get_visitors()
-        self.suffix_visitors = self.visitor_provider.get_suffix_visitors()
-        self.prefix_pisitors = self.visitor_provider.get_prefix_visitors()
 
     def stopProcess(self):
         self.process_is_stopped = True
@@ -161,4 +154,3 @@ class Context(object):
         for removal in self.removals:
             if removal.get_affix_type() == 'DP':
                 self.removals.remove(removal)
-

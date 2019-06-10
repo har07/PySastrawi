@@ -1,12 +1,9 @@
 import unittest
-from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
-from Sastrawi.Stemmer.Stemmer import Stemmer
+from Sastrawi.stemmer import Stemmer
 
 class Test_StemmerTest(unittest.TestCase):
     def setUp(self):
-        self.dictionary = ArrayDictionary(
-            [
-                'hancur', 'benar', 'apa', 'siapa', 'jubah', 'baju', 'beli',
+        words =['hancur', 'benar', 'apa', 'siapa', 'jubah', 'baju', 'beli',
                 'celana', 'hantu', 'jual', 'buku', 'milik', 'kulit', 'sakit', 'kasih', 'buang', 'suap',
                 'nilai', 'beri', 'rambut', 'adu', 'suara', 'daerah', 'ajar', 'kerja', 'ternak',
                 'asing', 'raup', 'gerak', 'puruk', 'terbang', 'lipat', 'ringkas', 'warna', 'yakin',
@@ -26,19 +23,19 @@ class Test_StemmerTest(unittest.TestCase):
                 'budaya', 'karya', 'ideal', 'final',
                 # sastrawi additional rules
                 'taat', 'tiru', 'sepak', 'kuasa', 'malaikat', 'nikmat', 'stabil', 'transkripsi',
-                'lewat', 'nganga', 'allah',
-            ]
-        )
-        self.stemmer = Stemmer(self.dictionary)
+                'lewat', 'nganga', 'allah']
+
+        self.stemmer = Stemmer(stemwords = set(words))
         return super(Test_StemmerTest, self).setUp()
 
     def try_stem(self, word, stem):
-        self.assertEquals(stem, self.stemmer.stem(word))
+        self.assertEqual(stem, self.stemmer.stem(word))
 
     def get_test_data(self):
         data = []
 
         # don't stem short words
+        data.append(['di', 'di'])
         data.append(['mei', 'mei'])
         data.append(['bui', 'bui'])
 
@@ -315,13 +312,13 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['subarkah', 'subarkah'])
 
         # recursively remove prefix
-        data.append(['memberdayakan', 'daya'])
+        data.append(['memberdayakan', 'daya'])                                 #FAILED
         data.append(['persemakmuran', 'makmur'])
         data.append(['keberuntunganmu', 'untung'])
         data.append(['kesepersepuluhnya', 'sepuluh'])
 
         # test stem sentence
-        data.append(['siapakah memberdayakan pembangunan', 'siapa daya bangun'])
+        data.append(['siapakah memberdayakan pembangunan', 'siapa daya bangun']) #OFC FAILED
 
         # issues
         data.append(['Perekonomian', 'ekonomi'])
@@ -376,7 +373,7 @@ class Test_StemmerTest(unittest.TestCase):
         data = self.get_test_data()
         for d in data:
             self.try_stem(d[0], d[1])
-        
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,5 @@
 import unittest
-from Sastrawi.Morphology.InvalidAffixPairSpecification import InvalidAffixPairSpecification
+from Sastrawi.stemming.rules import InvalidAffixPairSpecification
 
 class Test_InvalidAffixPairSpecificationTest(unittest.TestCase):
     def setUp(self):

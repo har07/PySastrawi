@@ -1,20 +1,16 @@
 import unittest
-from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
-from Sastrawi.Stemmer.Stemmer import Stemmer
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from Sastrawi.stemmer import Stemmer
 
 class Test_StemmerTest(unittest.TestCase):
     def setUp(self):
-        stemmerFactory = StemmerFactory()
-        self.stemmer = stemmerFactory.create_stemmer()
-        return super(Test_StemmerTest, self).setUp()
+        self.stemmer = Stemmer()
 
     def get_test_data(self):
         data = []
 
         data.append(['kebijakan', 'bijak'])
-        #//data.append(['karyawan', 'karya'])
-        #//data.append(['karyawati', 'karya'])
+        data.append(['karyawan', 'karya'])
+        data.append(['karyawati', 'karya'])
         data.append(['kinerja', 'kerja'])
         data.append(['mengandung', 'kandung'])
         data.append(['memakan', 'makan'])
@@ -52,13 +48,10 @@ class Test_StemmerTest(unittest.TestCase):
 
         return data
 
-    def try_stem(self, word, stem):
-        self.assertEquals(stem, self.stemmer.stem(word))
-
     def test_stem(self):
         data = self.get_test_data()
         for d in data:
-            self.try_stem(d[0], d[1])
+            self.assertEqual(self.stemmer.stem(d[0]), d[1])
 
 if __name__ == '__main__':
     unittest.main()

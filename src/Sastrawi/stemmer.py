@@ -1,13 +1,16 @@
+"""
+This module contains classes for stemming purpose.
+"""
+
 import re
 import os
-from Sastrawi.stemming.context import Context
-from Sastrawi.stemming.rules import VisitorProvider
+from Sastrawi.rules import VisitorProvider, isPAS
 
 class Stemmer():
     """
-    Indonesian Stemmer.
-    Nazief & Adriani, CS Stemmer, ECS Stemmer, Improved ECS.
+    Indonesian sentence stemmer.
 
+    Nazief & Adriani, CS Stemmer, ECS Stemmer, Improved ECS.
     @link https://github.com/sastrawi/sastrawi/wiki/Resources
     """
 
@@ -38,7 +41,7 @@ class Stemmer():
         else:
             self.stopwords = stopwords
 
-        self.cache = dict()
+        self._cache = dict()
         self.visitor_provider = VisitorProvider()
 
     def stem(self, text):
@@ -55,15 +58,15 @@ class Stemmer():
         stems = list()
 
         for word in words:
-            if word not in self.cache:
-                self.cache[word] = self._stem_word(word)
-            stems.append(self.cache[word])
+            if word not in self._cache:
+                self._cache[word] = self._stem_word(word)
+            stems.append(self._cache[word])
 
         return ' '.join(stems)
 
-    def remove(self, text):
+    def remove_stopword(self, text):
         """
-        Remove stop words.
+        Remove stop words from a text string.
         """
 
         words = text.lower().split(' ')
@@ -95,8 +98,8 @@ class Stemmer():
     def _stem_plural_word(self, plural):
         """
         Stem a plural word to its common stem form.
-        Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 76-77.
 
+        Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 76-77.
         @link   http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
         """
 
@@ -133,3 +136,179 @@ class Stemmer():
         """
 
         return Context(word, self.stemwords, self.visitor_provider).result
+
+
+class Context():
+    """
+    Stemming Context using Nazief and Adriani, CS, ECS, Improved ECS.
+    """
+
+    def __init__(self, original_word, dictionary, visitor_provider):
+
+        self.process_is_stopped = False
+        self.original_word = original_word
+        self.current_word = original_word
+        self.result = ''
+        self.dictionary = dictionary
+        self.removals = []
+
+        self.visitors = visitor_provider.visitors
+        self.suffix_visitors = visitor_provider.suffix_visitors
+        self.prefix_visitors = visitor_provider.prefix_visitors
+
+        # step 1 - 5
+        self._start_stemming_process()
+
+        # step 6
+        if self.current_word in self.dictionary:
+            self.result = self.current_word
+        else:
+            self.result = self.original_word
+
+
+    def stop_process(self):
+        """
+        Stop stemming process.
+        """
+        self.process_is_stopped = True
+
+
+    def add_removal(self, removal):
+        """
+        Add Removal information to removals.
+        """
+        self.removals.append(removal)
+
+
+    def _start_stemming_process(self):
+
+        # step 1
+        if self.current_word in self.dictionary:
+            return
+
+        self.accept_visitors(self.visitors)
+        if self.process_is_stopped:
+            return
+
+        # Confix Stripping
+        # Try to remove prefix before suffix if the specification is met
+        if isPAS(self.original_word):
+            # step 4, 5
+            self.remove_prefixes()
+            if self.process_is_stopped:
+                return
+
+            # step 2, 3
+            self.remove_suffixes()
+            if self.process_is_stopped:
+                return
+
+            # if the trial is failed, restore the original word
+            # and continue to normal rule precedence (suffix first, prefix afterwards)
+            self.current_word = self.original_word
+            self.removals = []
+
+        # step 2, 3
+        self.remove_suffixes()
+        if self.process_is_stopped:
+            return
+
+        # step 4, 5
+        self.remove_prefixes()
+        if self.process_is_stopped:
+            return
+
+        # Remove prefixes before ECS pengembalian loop
+        if self.removals:
+            # return the word before precoding (the subject of first prefix removal)
+            self.current_word = self.removals[0].subject
+
+        for removal in self.removals:
+            if removal.affixType == 'DP':
+                self.removals.remove(removal)
+
+        # ECS loop pengembalian akhiran
+        removals = self.removals
+        current_word = self.current_word
+
+        for removal in reversed(removals):
+
+            if not self.is_suffix_removal(removal):
+                continue
+
+            if removal.removedPart == 'kan':
+                self.current_word = removal.result + 'k'
+
+                # step 4,5
+                self.remove_prefixes()
+                if self.process_is_stopped:
+                    return
+                self.current_word = removal.result + 'kan'
+
+            else:
+                self.current_word = removal.subject
+
+            # step 4,5
+            self.remove_prefixes()
+            if self.process_is_stopped:
+                return
+
+            self.removals = removals
+            self.current_word = current_word
+
+
+    def remove_prefixes(self):
+        """
+        Accept prefix_visitors rules.
+        """
+        for try_ in range(3):
+            # accept_prefix_visitors
+            removal_count = len(self.removals)
+
+            for visitor in self.prefix_visitors:
+                self.accept(visitor)
+                if self.process_is_stopped:
+                    return None
+                if len(self.removals) > removal_count:
+                    break
+        return None
+
+    def remove_suffixes(self):
+        """
+        Accept suffix_visitors rules.
+        """
+        self.accept_visitors(self.suffix_visitors)
+
+
+    def accept_visitors(self, visitors):
+        """
+        Accept visitors rules.
+
+        Immediately stop stemming process if current_word processed by a visitor
+        is in dictionary.
+        """
+        for visitor in visitors:
+            self.accept(visitor)
+            if self.process_is_stopped:
+                return None
+        return None
+
+    def accept(self, visitor):
+        """
+        Accept visitor rule.
+
+        Stop stemming process if current_word processed by visitor is in
+        dictionary.
+        """
+        visitor.visit(self)
+        if self.current_word in self.dictionary:
+            self.stop_process()
+
+
+    def is_suffix_removal(self, removal):
+        """
+        Check whether the removed part is a suffix.
+        """
+        return removal.affixType == 'DS' \
+               or removal.affixType == 'PP' \
+               or removal.affixType == 'P'

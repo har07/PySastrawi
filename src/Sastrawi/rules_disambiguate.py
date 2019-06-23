@@ -1,3 +1,7 @@
+"""
+This module contains all Disambiguate Prefix Rule.
+"""
+
 import re
 
 def rule01a(word):

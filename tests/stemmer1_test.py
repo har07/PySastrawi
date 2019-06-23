@@ -312,13 +312,13 @@ class Test_StemmerTest(unittest.TestCase):
         data.append(['subarkah', 'subarkah'])
 
         # recursively remove prefix
-        data.append(['memberdayakan', 'daya'])                                 #FAILED
+        data.append(['memberdayakan', 'daya'])
         data.append(['persemakmuran', 'makmur'])
         data.append(['keberuntunganmu', 'untung'])
         data.append(['kesepersepuluhnya', 'sepuluh'])
 
         # test stem sentence
-        data.append(['siapakah memberdayakan pembangunan', 'siapa daya bangun']) #OFC FAILED
+        data.append(['siapakah memberdayakan pembangunan', 'siapa daya bangun'])
 
         # issues
         data.append(['Perekonomian', 'ekonomi'])

@@ -1,5 +1,5 @@
 import unittest
-from Sastrawi.stemmer import Stemmer
+from Sastrawi import Stemmer
 
 class Test_StemmerTest(unittest.TestCase):
     def setUp(self):

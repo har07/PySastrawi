@@ -1,5 +1,5 @@
 import unittest
-from Sastrawi.stemmer import Stemmer
+from Sastrawi import Stemmer
 
 class Test_StemmerTest(unittest.TestCase):
     def setUp(self):
@@ -25,7 +25,7 @@ class Test_StemmerTest(unittest.TestCase):
                 'taat', 'tiru', 'sepak', 'kuasa', 'malaikat', 'nikmat', 'stabil', 'transkripsi',
                 'lewat', 'nganga', 'allah']
 
-        self.stemmer = Stemmer(stemwords = set(words))
+        self.stemmer = Stemmer(rootwords = set(words))
         return super(Test_StemmerTest, self).setUp()
 
     def try_stem(self, word, stem):
@@ -342,8 +342,8 @@ class Test_StemmerTest(unittest.TestCase):
         #data.append(['abdullah', 'abdullah'])
 
         # adopted foreign suffixes
-        #data.append(['budayawan', 'budaya'])
-        #data.append(['karyawati', 'karya'])
+        data.append(['budayawan', 'budaya'])
+        data.append(['karyawati', 'karya'])
         data.append(['idealis', 'ideal'])
         data.append(['idealisme', 'ideal'])
         data.append(['finalisasi', 'final'])

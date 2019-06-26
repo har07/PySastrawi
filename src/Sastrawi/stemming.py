@@ -4,7 +4,8 @@ This module contains classes for stemming purpose.
 
 import re
 import os
-from Sastrawi.rules import VisitorProvider, isPAS
+import Sastrawi.rules as Rules
+
 
 class Stemmer():
     """
@@ -14,21 +15,21 @@ class Stemmer():
     @link https://github.com/sastrawi/sastrawi/wiki/Resources
     """
 
-    def __init__(self, stemwords=None, stopwords=None):
+    def __init__(self, rootwords=None, stopwords=None):
 
         current_dir = os.path.dirname(os.path.realpath(__file__))
         err_msg = '{} is missing. It seems that your installation is corrupted'
 
-        if stemwords is None:
+        if rootwords is None:
             try:
-                filepath = '/data/stemwords.txt'
+                filepath = '/data/rootwords.txt'
                 with open(current_dir + filepath, 'r') as file:
                     words = file.read().split('\n')
-                    self.stemwords = set(words)
+                    self.rootwords = set(words)
             except FileNotFoundError:
                 raise RuntimeError(err_msg.format(filepath)) from None
         else:
-            self.stemwords = stemwords
+            self.rootwords = rootwords
 
         if stopwords is None:
             try:
@@ -42,7 +43,6 @@ class Stemmer():
             self.stopwords = stopwords
 
         self._cache = dict()
-        self.visitor_provider = VisitorProvider()
 
     def stem(self, text):
         """
@@ -50,7 +50,7 @@ class Stemmer():
         """
 
         # normalize_text
-        result = text.lower() # lower the text even unicode given
+        result = text.lower()  # lower the text even unicode given
         result = re.sub(r'[^a-z0-9 -]', ' ', result, flags=re.IGNORECASE|re.MULTILINE)
         result = re.sub(r'( +)', ' ', result, flags=re.IGNORECASE|re.MULTILINE)
         words = result.strip().split(' ')
@@ -73,6 +73,17 @@ class Stemmer():
         stopped_words = [w for w in words if w not in self.stopwords]
 
         return ' '.join(stopped_words)
+
+    def context(self, word):
+        """
+        Return context of the word.
+        """
+
+        # not optimized yet
+        t = Context(word, self.rootwords)
+        removals = [(r.removedPart, r.affixType) for r in t.removals]
+
+        return (t.result, removals)
 
     def _stem_word(self, word):
         """
@@ -123,7 +134,7 @@ class Stemmer():
         root_word2 = self._stem_singular_word(words[1])
 
         # meniru-nirukan -> tiru
-        if not words[1] in self.stemwords and root_word2 == words[1]:
+        if not words[1] in self.rootwords and root_word2 == words[1]:
             root_word2 = self._stem_singular_word('me' + words[1])
 
         if root_word1 == root_word2:
@@ -135,7 +146,7 @@ class Stemmer():
         Stem a singular word to its common stem form.
         """
 
-        return Context(word, self.stemwords, self.visitor_provider).result
+        return Context(word, self.rootwords).result
 
 
 class Context():
@@ -143,7 +154,7 @@ class Context():
     Stemming Context using Nazief and Adriani, CS, ECS, Improved ECS.
     """
 
-    def __init__(self, original_word, dictionary, visitor_provider):
+    def __init__(self, original_word, dictionary):
 
         self.process_is_stopped = False
         self.original_word = original_word
@@ -151,10 +162,6 @@ class Context():
         self.result = ''
         self.dictionary = dictionary
         self.removals = []
-
-        self.visitors = visitor_provider.visitors
-        self.suffix_visitors = visitor_provider.suffix_visitors
-        self.prefix_visitors = visitor_provider.prefix_visitors
 
         # step 1 - 5
         self._start_stemming_process()
@@ -164,7 +171,7 @@ class Context():
             self.result = self.current_word
         else:
             self.result = self.original_word
-
+            self.removals = []
 
     def stop_process(self):
         """
@@ -172,13 +179,11 @@ class Context():
         """
         self.process_is_stopped = True
 
-
     def add_removal(self, removal):
         """
         Add Removal information to removals.
         """
         self.removals.append(removal)
-
 
     def _start_stemming_process(self):
 
@@ -186,13 +191,13 @@ class Context():
         if self.current_word in self.dictionary:
             return
 
-        self.accept_visitors(self.visitors)
+        self.accept_visitors(Rules.VisitorProvider.visitors)
         if self.process_is_stopped:
             return
 
         # Confix Stripping
         # Try to remove prefix before suffix if the specification is met
-        if isPAS(self.original_word):
+        if Rules.isPAS(self.original_word):
             # step 4, 5
             self.remove_prefixes()
             if self.process_is_stopped:
@@ -256,7 +261,6 @@ class Context():
             self.removals = removals
             self.current_word = current_word
 
-
     def remove_prefixes(self):
         """
         Accept prefix_visitors rules.
@@ -265,7 +269,7 @@ class Context():
             # accept_prefix_visitors
             removal_count = len(self.removals)
 
-            for visitor in self.prefix_visitors:
+            for visitor in Rules.VisitorProvider.prefix_visitors:
                 self.accept(visitor)
                 if self.process_is_stopped:
                     return None
@@ -277,8 +281,7 @@ class Context():
         """
         Accept suffix_visitors rules.
         """
-        self.accept_visitors(self.suffix_visitors)
-
+        self.accept_visitors(Rules.VisitorProvider.suffix_visitors)
 
     def accept_visitors(self, visitors):
         """
@@ -300,15 +303,15 @@ class Context():
         Stop stemming process if current_word processed by visitor is in
         dictionary.
         """
-        visitor.visit(self)
+        visitor(self)
         if self.current_word in self.dictionary:
             self.stop_process()
-
 
     def is_suffix_removal(self, removal):
         """
         Check whether the removed part is a suffix.
         """
         return removal.affixType == 'DS' \
-               or removal.affixType == 'PP' \
-               or removal.affixType == 'P'
+                or removal.affixType == 'PP' \
+                or removal.affixType == 'P'
+

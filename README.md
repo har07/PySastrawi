@@ -1,8 +1,7 @@
 # PySastrawi
 
-[![Build Status](https://travis-ci.org/har07/PySastrawi.svg?branch=master)](https://travis-ci.org/har07/PySastrawi)
-[![Coverage Status](https://coveralls.io/repos/github/har07/PySastrawi/badge.svg?branch=master)](https://coveralls.io/github/har07/PySastrawi?branch=master)
-[![PyPI version](https://badge.fury.io/py/PySastrawi.svg)](https://badge.fury.io/py/PySastrawi)
+[![Build Status](https://travis-ci.org/kekavigi/PySastrawi.svg?branch=master)](https://travis-ci.org/kekavigi/PySastrawi)
+[![Coverage Status](https://coveralls.io/repos/github/kekavigi/PySastrawi/badge.svg)](https://coveralls.io/github/kekavigi/PySastrawi)
 
 ## English
 

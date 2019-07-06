@@ -1,7 +1,7 @@
 # PySastrawi
 
-[![Build Status](https://travis-ci.org/kekavigi/PySastrawi.svg?branch=master)](https://travis-ci.org/kekavigi/PySastrawi)
-[![Coverage Status](https://coveralls.io/repos/github/kekavigi/PySastrawi/badge.svg)](https://coveralls.io/github/kekavigi/PySastrawi)
+[![Build Status](https://travis-ci.org/kekavigi/PySastrawi.svg?branch=devel)](https://travis-ci.org/kekavigi/PySastrawi)
+[![Coverage Status](https://coveralls.io/repos/github/kekavigi/PySastrawi/badge.svg)](https://coveralls.io/github/kekavigi/PySastrawi?branch=devel)
 
 ## English
 

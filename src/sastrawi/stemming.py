@@ -4,7 +4,7 @@ This module contains classes for stemming purpose.
 
 import re
 import os
-import Sastrawi.rules as Rules
+import sastrawi.rules as Rules
 
 
 class Stemmer():
@@ -48,6 +48,9 @@ class Stemmer():
         """
         Stem a text string to its common stem form.
         """
+        
+        if type(text) != str:
+            raise TypeError('text must be a string!')
 
         # normalize_text
         result = text.lower()  # lower the text even unicode given
@@ -59,7 +62,7 @@ class Stemmer():
 
         for word in words:
             if word not in self._cache:
-                self._cache[word] = self._stem_word(word)
+                self._cache[word] = self.context(word)[0]
             stems.append(self._cache[word])
 
         return ' '.join(stems)
@@ -69,30 +72,13 @@ class Stemmer():
         Remove stop words from a text string.
         """
 
+        if type(text) != str:
+            raise TypeError('text must be a string!')
+
         words = text.lower().split(' ')
         stopped_words = [w for w in words if w not in self.stopwords]
 
         return ' '.join(stopped_words)
-
-    def context(self, word):
-        """
-        Return context of the word.
-        """
-
-        # not optimized yet
-        t = Context(word, self.rootwords)
-        removals = [(r.removedPart, r.affixType) for r in t.removals]
-
-        return (t.result, removals)
-
-    def _stem_word(self, word):
-        """
-        Stem a word to its stem form.
-        """
-
-        if self._is_plural(word):
-            return self._stem_plural_word(word)
-        return self._stem_singular_word(word)
 
     def _is_plural(self, word):
         """
@@ -106,19 +92,25 @@ class Stemmer():
             return matches.group(1).find('-') != -1
         return word.find('-') != -1
 
-    def _stem_plural_word(self, plural):
+    def context(self, word):
         """
-        Stem a plural word to its common stem form.
-
-        Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 76-77.
-        @link   http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
+        Return simplified Context of the word.
         """
 
-        matches = re.match(r'^(.*)-(.*)$', plural)
-        # translated from PHP conditional check:
-        # if (!isset($words[1]) || !isset($words[2]))
+        if type(word) != str:
+            raise TypeError('word must be a string!')
+
+        if self._is_plural(word):
+            return self._plural_context(word)
+        return self._singular_context(word)
+
+    def _plural_context(self, word):
+
+        # check if word is singular
+        matches = re.match(r'^(.*)-(.*)$', word)
         if not matches:
-            return plural
+            return self._singular_context(word)
+
         words = [matches.group(1), matches.group(2)]
 
         # malaikat-malaikat-nya -> malaikat malaikat-nya
@@ -127,26 +119,26 @@ class Stemmer():
         matches = re.match(r'^(.*)-(.*)$', words[0])
         if suffix in suffixes and matches:
             words[0] = matches.group(1)
-            words[1] = matches.group(2) + '-' + suffix
+            words[1] = matches.group(2) + suffix
 
         # berbalas-balasan -> balas
-        root_word1 = self._stem_singular_word(words[0])
-        root_word2 = self._stem_singular_word(words[1])
+        word1, removals1 = self._singular_context(words[0])
+        word2, removals2 = self._singular_context(words[1])
 
         # meniru-nirukan -> tiru
-        if not words[1] in self.rootwords and root_word2 == words[1]:
-            root_word2 = self._stem_singular_word('me' + words[1])
+        if not words[1] in self.rootwords and word2 == words[1]:
+            word2, removals1 = self._singular_context('me' + words[1])
 
-        if root_word1 == root_word2:
-            return root_word1
-        return plural
+        if word1 == word2:
+            removals = list(set(removals1 + removals2))
+            return [word1, removals]
 
-    def _stem_singular_word(self, word):
-        """
-        Stem a singular word to its common stem form.
-        """
+        return [word, list()]
 
-        return Context(word, self.rootwords).result
+    def _singular_context(self, word):
+        t = Context(word, self.rootwords)
+        removals = [(r.removedPart, r.affixType) for r in t.removals]
+        return [t.result, removals]
 
 
 class Context():
@@ -172,7 +164,7 @@ class Context():
         else:
             self.result = self.original_word
             self.removals = []
-
+        
     def stop_process(self):
         """
         Stop stemming process.
@@ -314,4 +306,3 @@ class Context():
         return removal.affixType == 'DS' \
                 or removal.affixType == 'PP' \
                 or removal.affixType == 'P'
-

@@ -110,8 +110,11 @@ def RemoveDerivationalSuffix(context):
     @link http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
     """
 
-    # wan wati
-    result = re.sub(r'(wan|wati)$', '', context.current_word, 1)
+    # unable to stem "some rare cases when the root words change after being
+    # attached to these suffixes. For example, adding the suffix '-wan' to the
+    # word 'sejarah' <history> results in the word 'sejarawan' <historian>"
+
+    result = re.sub(r'(wan|wati|is|isme|isasi)$', '', context.current_word, 1)
     if result in context.dictionary:
         removed_part = re.sub(result, '', context.current_word, 1)
         removal = Removal(context.current_word, result, removed_part, 'DS')
@@ -120,7 +123,7 @@ def RemoveDerivationalSuffix(context):
         context.current_word = result
         return
 
-    result = re.sub(r'(is|isme|isasi|i|kan|an)$', '', context.current_word, 1)
+    result = re.sub(r'(i|kan|an)$', '', context.current_word, 1)
     if result != context.current_word:
         removed_part = re.sub(result, '', context.current_word, 1)
         removal = Removal(context.current_word, result, removed_part, 'DS')
@@ -155,17 +158,20 @@ class PrefixDisambiguator():
         self.rules = rules
 
     def visit(self, context):
+        """
+        Accept disambiguate prefix rule(s).
+        """
+
         result = None
 
         for rule in self.rules:
-            result = rule(context.current_word)
+            removed_part, result = rule(context.current_word)
             if result in context.dictionary:
                 break
 
         if result is None:
             return None
 
-        removed_part = re.sub(result, '', context.current_word, 1)
         removal = Removal(context.current_word, result, removed_part, 'DP')
 
         context.add_removal(removal)
@@ -180,8 +186,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ber([aiueo].*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'ber', matches.group(1)
+        return None, None
 
     @staticmethod
     def rule01b(word):
@@ -191,8 +197,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ber([aiueo].*)$', word)
         if matches:
-            return 'r' + matches.group(1)
-        return None
+            return 'ber', 'r' + matches.group(1)
+        return None, None
 
     @staticmethod
     def rule02(word):
@@ -203,10 +209,10 @@ class PrefixDisambiguator():
         matches = re.match(r'^ber([bcdfghjklmnpqrstvwxyz])([a-z])(.*)', word)
         if matches:
             if re.match(r'^er(.*)$', matches.group(3)):
-                return None
+                return None, None
 
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'ber', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule03(word):
@@ -217,20 +223,24 @@ class PrefixDisambiguator():
         matches = re.match(r'ber([bcdfghjklmnpqrstvwxyz])([a-z])er([aiueo])(.*)', word)
         if matches:
             if matches.group(1) == 'r':
-                return None
+                return None, None
 
-            return matches.group(1) + matches.group(2) + 'er' + matches.group(3) + matches.group(4)
-        return None
+            return 'ber', matches.group(1) + matches.group(2) + 'er' \
+                          + matches.group(3) + matches.group(4)
+        return None, None
 
     @staticmethod
     def rule04(word):
         """
         Disambiguate Prefix Rule 4
-        Rule 4 : belajar -> bel-ajar
+        Rule 4 : belajar  -> bel-ajar
+                 belunjur -> bel-unjur
         """
         if word == 'belajar':
-            return 'ajar'
-        return None
+            return 'ber', 'ajar'
+        if word == 'belunjur':
+            return 'ber', 'unjur'
+        return None, None
 
     @staticmethod
     def rule05(word):
@@ -240,8 +250,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'be([bcdfghjklmnpqstvwxyz])(er[bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'be', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule06a(word):
@@ -251,8 +261,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ter([aiueo].*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'ter', matches.group(1)
+        return None, None
 
     @staticmethod
     def rule06b(word):
@@ -262,8 +272,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ter([aiueo].*)$', word)
         if matches:
-            return 'r' + matches.group(1)
-        return None
+            return 'ter', 'r' + matches.group(1)
+        return None, None
 
     @staticmethod
     def rule07(word):
@@ -275,8 +285,8 @@ class PrefixDisambiguator():
         if matches:
             if matches.group(1) == 'r':
                 return None
-            return matches.group(1) + 'er' + matches.group(2)
-        return None
+            return 'ter', matches.group(1) + 'er' + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule08(word):
@@ -287,9 +297,9 @@ class PrefixDisambiguator():
         matches = re.match(r'^ter([bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
             if matches.group(1) == 'r' or re.match(r'^er(.*)$', matches.group(2)):
-                return None
-            return matches.group(1) + matches.group(2)
-        return None
+                return None, None
+            return 'ter', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule09(word):
@@ -301,8 +311,8 @@ class PrefixDisambiguator():
         if matches:
             if matches.group(1) == 'r':
                 return None
-            return matches.group(1) + 'er' + matches.group(2) + matches.group(3)
-        return None
+            return 'te', matches.group(1) + 'er' + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule10(word):
@@ -312,8 +322,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^me([lrwy])([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'me', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule11(word):
@@ -323,8 +333,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^mem([bfv])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'me', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule12(word):
@@ -335,8 +345,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^mempe(.*)$', word)
         if matches:
-            return 'pe' + matches.group(1)
-        return None
+            return 'me', 'pe' + matches.group(1)
+        return None, None
 
     @staticmethod
     def rule13a(word):
@@ -346,8 +356,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^mem([aiueo])(.*)$', word)
         if matches:
-            return 'm' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'm' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule13b(word):
@@ -357,8 +367,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^mem([aiueo])(.*)$', word)
         if matches:
-            return 'p' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'p' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule14(word):
@@ -374,8 +384,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^men([cdjstz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'me', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule15a(word):
@@ -385,8 +395,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^men([aiueo])(.*)$', word)
         if matches:
-            return 'n' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'n' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule15b(word):
@@ -396,8 +406,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^men([aiueo])(.*)$', word)
         if matches:
-            return 't' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 't' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule16(word):
@@ -408,8 +418,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meng([g|h|q|k])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'me', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule17a(word):
@@ -419,8 +429,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meng([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'me', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule17b(word):
@@ -430,8 +440,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meng([aiueo])(.*)$', word)
         if matches:
-            return 'k' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'k' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule17c(word):
@@ -441,8 +451,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^menge(.*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'me', matches.group(1)
+        return None, None
 
     @staticmethod
     def rule17d(word):
@@ -452,8 +462,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meng([aiueo])(.*)$', word)
         if matches:
-            return 'ng' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'ng' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule18a(word):
@@ -463,8 +473,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meny([aiueo])(.*)$', word)
         if matches:
-            return 'ny' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'ny' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule18b(word):
@@ -475,8 +485,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^meny([aiueo])(.*)$', word)
         if matches:
-            return 's' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 's' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule19(word):
@@ -487,8 +497,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^memp([abcdfghijklmopqrstuvwxyz])(.*)$', word)
         if matches:
-            return 'p' + matches.group(1) + matches.group(2)
-        return None
+            return 'me', 'p' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule20(word):
@@ -498,8 +508,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pe([wy])([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'pe', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule21a(word):
@@ -509,8 +519,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^per([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule21b(word):
@@ -520,8 +530,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pe(r[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule23(word):
@@ -532,9 +542,9 @@ class PrefixDisambiguator():
         matches = re.match(r'^per([bcdfghjklmnpqrstvwxyz])([a-z])(.*)$', word)
         if matches:
             if re.match(r'^er(.*)$', matches.group(3)):
-                return None
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+                return None, None
+            return 'pe', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule24(word):
@@ -545,9 +555,10 @@ class PrefixDisambiguator():
         matches = re.match(r'^per([bcdfghjklmnpqrstvwxyz])([a-z])er([aiueo])(.*)$', word)
         if matches:
             if matches.group(1) == 'r':
-                return None
-            return matches.group(1) + matches.group(2) + 'er' + matches.group(3) + matches.group(4)
-        return None
+                return None, None
+            return 'pe', matches.group(1) + matches.group(2) + 'er' \
+                         + matches.group(3) + matches.group(4)
+        return None, None
 
     @staticmethod
     def rule25(word):
@@ -557,8 +568,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pem([bfv])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule26a(word):
@@ -568,8 +579,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pem([aiueo])(.*)$', word)
         if matches:
-            return 'm' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 'm' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule26b(word):
@@ -579,8 +590,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pem([aiueo])(.*)$', word)
         if matches:
-            return 'p' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 'p' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule27(word):
@@ -593,8 +604,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pen([cdjstz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule28a(word):
@@ -604,8 +615,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pen([aiueo])(.*)$', word)
         if matches:
-            return 'n' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 'n' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule28b(word):
@@ -615,8 +626,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pen([aiueo])(.*)$', word)
         if matches:
-            return 't' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 't' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule29(word):
@@ -627,8 +638,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^peng([bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule30a(word):
@@ -638,8 +649,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^peng([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule30b(word):
@@ -649,8 +660,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^peng([aiueo])(.*)$', word)
         if matches:
-            return 'k' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 'k' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule30c(word):
@@ -660,8 +671,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^penge(.*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'pe', matches.group(1)
+        return None, None
 
     @staticmethod
     def rule31a(word):
@@ -671,8 +682,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^peny([aiueo])(.*)$', word)
         if matches:
-            return 'ny' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 'ny' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule31b(word):
@@ -683,8 +694,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^peny([aiueo])(.*)$', word)
         if matches:
-            return 's' + matches.group(1) + matches.group(2)
-        return None
+            return 'pe', 's' + matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule32(word):
@@ -693,11 +704,11 @@ class PrefixDisambiguator():
         Rule 32 : pelV -> pe-lV except pelajar -> ajar
         """
         if word == 'pelajar':
-            return 'ajar'
+            return 'pe', 'ajar'
         matches = re.match(r'^pe(l[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2)
-        return None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule34(word):
@@ -708,9 +719,9 @@ class PrefixDisambiguator():
         matches = re.match(r'^pe([bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
             if re.match(r'^er(.*)$', matches.group(2)):
-                return None
-            return matches.group(1) + matches.group(2)
-        return None
+                return None, None
+            return 'pe', matches.group(1) + matches.group(2)
+        return None, None
 
     @staticmethod
     def rule35(word):
@@ -720,8 +731,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ter([bcdfghjkpqstvxz])(er[bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'ter', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule36(word):
@@ -731,8 +742,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^pe([bcdfghjkpqstvxz])(er[bcdfghjklmnpqrstvwxyz])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'pe', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule37a(word):
@@ -742,8 +753,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])(er[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'er', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule37b(word):
@@ -753,8 +764,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])er([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'er', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule38a(word):
@@ -764,8 +775,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])(el[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'el', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule38b(word):
@@ -775,8 +786,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])el([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'el', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule39a(word):
@@ -786,8 +797,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])(em[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'em', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule39b(word):
@@ -797,8 +808,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])em([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'em', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule40a(word):
@@ -808,8 +819,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])(in[aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'in', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule40b(word):
@@ -819,8 +830,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^([bcdfghjklmnpqrstvwxyz])in([aiueo])(.*)$', word)
         if matches:
-            return matches.group(1) + matches.group(2) + matches.group(3)
-        return None
+            return 'in', matches.group(1) + matches.group(2) + matches.group(3)
+        return None, None
 
     @staticmethod
     def rule41(word):
@@ -830,8 +841,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^ku(.*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'ku', matches.group(1)
+        return None, None
 
     @staticmethod
     def rule42(word):
@@ -841,8 +852,8 @@ class PrefixDisambiguator():
         """
         matches = re.match(r'^kau(.*)$', word)
         if matches:
-            return matches.group(1)
-        return None
+            return 'kau', matches.group(1)
+        return None, None
 
 
 Removal = namedtuple('Removal', 'subject result removedPart affixType')

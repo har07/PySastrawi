@@ -15,9 +15,9 @@ Usage
 ------
 
 ```python
-import Sastrawi
+import sastrawi
 
-stemmer = Stemmer()
+stemmer = sastrawi.Stemmer()
 
 sentences = ['Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan',
              'Mereka meniru-nirukannya']
@@ -28,17 +28,15 @@ for sentence in sentences:
 # ekonomi indonesia sedang dalam tumbuh yang bangga
 # mereka tiru
 
-# remove stopwords
+# removing stopwords
 for sentence in sentences:
     print(stemmer.stem(sentence))
 # perekonomian indonesia pertumbuhan membanggakan
 # meniru-nirukannya
 
 # more about stemming process
-res = stemmer.context('kemerdekaannya')
-
-print(res.result)
-# ('merdeka', [('nya', 'PP'), ('an', 'DS'), ('ke', 'DP')])
+res = stemmer.context('meniru-nirukannya'))
+# ['tiru', [('me', 'DP'), ('nya', 'PP'), ('kan', 'DS')]]
 
 ```
 
@@ -75,9 +73,9 @@ Penggunaan
 -----------
 
 ```python
-import Sastrawi
+import sastrawi
 
-stemmer = Stemmer()
+stemmer = sastrawi.Stemmer()
 
 sentences = ['Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan',
              'Mereka meniru-nirukannya']
@@ -95,10 +93,9 @@ for sentence in sentences:
 # meniru-nirukannya
 
 # lebih dalam tentang proses stemming
-res = stemmer.context('kemerdekaannya')
+res = stemmer.context('meniru-nirukannya'))
+# ['tiru', [('me', 'DP'), ('nya', 'PP'), ('kan', 'DS')]]
 
-print(res.result)
-# ('merdeka', [('nya', 'PP'), ('an', 'DS'), ('ke', 'DP')])
 ```
 
 Demo

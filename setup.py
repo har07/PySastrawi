@@ -26,7 +26,7 @@ setup(
 
     description='Library for stemming Indonesian (Bahasa) text',
     long_description='Library for stemming Indonesian (Bahasa) text',
-    long_description_content_type="text/markdown"
+    long_description_content_type="text/markdown",
 
     # The project's main homepage.
     url='https://github.com/har07/PySastrawi',
@@ -56,12 +56,11 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ],
 
     # What does your project relate to?

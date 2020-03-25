@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 # Get the long description from the README file
 here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -26,6 +26,7 @@ setup(
 
     description='Library for stemming Indonesian (Bahasa) text',
     long_description='Library for stemming Indonesian (Bahasa) text',
+    long_description_content_type="text/markdown",
 
     # The project's main homepage.
     url='https://github.com/har07/PySastrawi',
@@ -55,12 +56,11 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ],
 
     # What does your project relate to?

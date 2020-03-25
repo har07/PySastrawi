@@ -4,7 +4,8 @@ This module contains classes for stemming purpose.
 
 import re
 import os
-from Sastrawi.rules import VisitorProvider, isPAS
+import sastrawi.rules as Rules
+
 
 class Stemmer():
     """
@@ -14,21 +15,21 @@ class Stemmer():
     @link https://github.com/sastrawi/sastrawi/wiki/Resources
     """
 
-    def __init__(self, stemwords=None, stopwords=None):
+    def __init__(self, rootwords=None, stopwords=None):
 
         current_dir = os.path.dirname(os.path.realpath(__file__))
         err_msg = '{} is missing. It seems that your installation is corrupted'
 
-        if stemwords is None:
+        if rootwords is None:
             try:
-                filepath = '/data/stemwords.txt'
+                filepath = '/data/rootwords.txt'
                 with open(current_dir + filepath, 'r') as file:
                     words = file.read().split('\n')
-                    self.stemwords = set(words)
+                    self.rootwords = set(words)
             except FileNotFoundError:
                 raise RuntimeError(err_msg.format(filepath)) from None
         else:
-            self.stemwords = stemwords
+            self.rootwords = rootwords
 
         if stopwords is None:
             try:
@@ -42,15 +43,17 @@ class Stemmer():
             self.stopwords = stopwords
 
         self._cache = dict()
-        self.visitor_provider = VisitorProvider()
 
     def stem(self, text):
         """
         Stem a text string to its common stem form.
         """
+        
+        if type(text) != str:
+            raise TypeError('text must be a string!')
 
         # normalize_text
-        result = text.lower() # lower the text even unicode given
+        result = text.lower()  # lower the text even unicode given
         result = re.sub(r'[^a-z0-9 -]', ' ', result, flags=re.IGNORECASE|re.MULTILINE)
         result = re.sub(r'( +)', ' ', result, flags=re.IGNORECASE|re.MULTILINE)
         words = result.strip().split(' ')
@@ -59,7 +62,7 @@ class Stemmer():
 
         for word in words:
             if word not in self._cache:
-                self._cache[word] = self._stem_word(word)
+                self._cache[word] = self.context(word)[0]
             stems.append(self._cache[word])
 
         return ' '.join(stems)
@@ -69,19 +72,13 @@ class Stemmer():
         Remove stop words from a text string.
         """
 
+        if type(text) != str:
+            raise TypeError('text must be a string!')
+
         words = text.lower().split(' ')
         stopped_words = [w for w in words if w not in self.stopwords]
 
         return ' '.join(stopped_words)
-
-    def _stem_word(self, word):
-        """
-        Stem a word to its stem form.
-        """
-
-        if self._is_plural(word):
-            return self._stem_plural_word(word)
-        return self._stem_singular_word(word)
 
     def _is_plural(self, word):
         """
@@ -95,19 +92,25 @@ class Stemmer():
             return matches.group(1).find('-') != -1
         return word.find('-') != -1
 
-    def _stem_plural_word(self, plural):
+    def context(self, word):
         """
-        Stem a plural word to its common stem form.
-
-        Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 76-77.
-        @link   http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
+        Return simplified Context of the word.
         """
 
-        matches = re.match(r'^(.*)-(.*)$', plural)
-        # translated from PHP conditional check:
-        # if (!isset($words[1]) || !isset($words[2]))
+        if type(word) != str:
+            raise TypeError('word must be a string!')
+
+        if self._is_plural(word):
+            return self._plural_context(word)
+        return self._singular_context(word)
+
+    def _plural_context(self, word):
+
+        # check if word is singular
+        matches = re.match(r'^(.*)-(.*)$', word)
         if not matches:
-            return plural
+            return self._singular_context(word)
+
         words = [matches.group(1), matches.group(2)]
 
         # malaikat-malaikat-nya -> malaikat malaikat-nya
@@ -116,26 +119,26 @@ class Stemmer():
         matches = re.match(r'^(.*)-(.*)$', words[0])
         if suffix in suffixes and matches:
             words[0] = matches.group(1)
-            words[1] = matches.group(2) + '-' + suffix
+            words[1] = matches.group(2) + suffix
 
         # berbalas-balasan -> balas
-        root_word1 = self._stem_singular_word(words[0])
-        root_word2 = self._stem_singular_word(words[1])
+        word1, removals1 = self._singular_context(words[0])
+        word2, removals2 = self._singular_context(words[1])
 
         # meniru-nirukan -> tiru
-        if not words[1] in self.stemwords and root_word2 == words[1]:
-            root_word2 = self._stem_singular_word('me' + words[1])
+        if not words[1] in self.rootwords and word2 == words[1]:
+            word2, removals1 = self._singular_context('me' + words[1])
 
-        if root_word1 == root_word2:
-            return root_word1
-        return plural
+        if word1 == word2:
+            removals = list(set(removals1 + removals2))
+            return [word1, removals]
 
-    def _stem_singular_word(self, word):
-        """
-        Stem a singular word to its common stem form.
-        """
+        return [word, list()]
 
-        return Context(word, self.stemwords, self.visitor_provider).result
+    def _singular_context(self, word):
+        t = Context(word, self.rootwords)
+        removals = [(r.removedPart, r.affixType) for r in t.removals]
+        return [t.result, removals]
 
 
 class Context():
@@ -143,7 +146,7 @@ class Context():
     Stemming Context using Nazief and Adriani, CS, ECS, Improved ECS.
     """
 
-    def __init__(self, original_word, dictionary, visitor_provider):
+    def __init__(self, original_word, dictionary):
 
         self.process_is_stopped = False
         self.original_word = original_word
@@ -151,10 +154,6 @@ class Context():
         self.result = ''
         self.dictionary = dictionary
         self.removals = []
-
-        self.visitors = visitor_provider.visitors
-        self.suffix_visitors = visitor_provider.suffix_visitors
-        self.prefix_visitors = visitor_provider.prefix_visitors
 
         # step 1 - 5
         self._start_stemming_process()
@@ -164,14 +163,13 @@ class Context():
             self.result = self.current_word
         else:
             self.result = self.original_word
-
-
+            self.removals = []
+        
     def stop_process(self):
         """
         Stop stemming process.
         """
         self.process_is_stopped = True
-
 
     def add_removal(self, removal):
         """
@@ -179,20 +177,19 @@ class Context():
         """
         self.removals.append(removal)
 
-
     def _start_stemming_process(self):
 
         # step 1
         if self.current_word in self.dictionary:
             return
 
-        self.accept_visitors(self.visitors)
+        self.accept_visitors(Rules.VisitorProvider.visitors)
         if self.process_is_stopped:
             return
 
         # Confix Stripping
         # Try to remove prefix before suffix if the specification is met
-        if isPAS(self.original_word):
+        if Rules.isPAS(self.original_word):
             # step 4, 5
             self.remove_prefixes()
             if self.process_is_stopped:
@@ -256,7 +253,6 @@ class Context():
             self.removals = removals
             self.current_word = current_word
 
-
     def remove_prefixes(self):
         """
         Accept prefix_visitors rules.
@@ -265,7 +261,7 @@ class Context():
             # accept_prefix_visitors
             removal_count = len(self.removals)
 
-            for visitor in self.prefix_visitors:
+            for visitor in Rules.VisitorProvider.prefix_visitors:
                 self.accept(visitor)
                 if self.process_is_stopped:
                     return None
@@ -277,8 +273,7 @@ class Context():
         """
         Accept suffix_visitors rules.
         """
-        self.accept_visitors(self.suffix_visitors)
-
+        self.accept_visitors(Rules.VisitorProvider.suffix_visitors)
 
     def accept_visitors(self, visitors):
         """
@@ -300,15 +295,14 @@ class Context():
         Stop stemming process if current_word processed by visitor is in
         dictionary.
         """
-        visitor.visit(self)
+        visitor(self)
         if self.current_word in self.dictionary:
             self.stop_process()
-
 
     def is_suffix_removal(self, removal):
         """
         Check whether the removed part is a suffix.
         """
         return removal.affixType == 'DS' \
-               or removal.affixType == 'PP' \
-               or removal.affixType == 'P'
+                or removal.affixType == 'PP' \
+                or removal.affixType == 'P'

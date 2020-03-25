@@ -1,5 +1,5 @@
 import unittest
-from Sastrawi.rules import isIAPS
+from sastrawi.rules import isIAPS
 
 class Test_isIAPSTest(unittest.TestCase):
     def setUp(self):

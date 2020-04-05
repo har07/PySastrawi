@@ -10,11 +10,9 @@ class StopWordRemover(object):
     def remove(self, text):
         """Remove stop words."""
         words = text.split(' ')
-        for word in words:
-            if self.dictionary.contains(word):
-                words.remove(word)
+        stopped_words = [word for word in words if not self.dictionary.contains(word)]
 
-        return ' '.join(words)
+        return ' '.join(stopped_words)
 
 
 

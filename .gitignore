@@ -1,7 +1,9 @@
-<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+
+# pycharm generated
+.idea/
 
 # visual studio generated
 bin/
@@ -62,8 +64,5 @@ docs/_build/
 
 # PyBuilder
 target/
-||||||| merged common ancestors
-=======
 # Google App Engine generated folder
 appengine-generated/
->>>>>>> adaaddecc50208c18b08806f63f80f3342bd5e30

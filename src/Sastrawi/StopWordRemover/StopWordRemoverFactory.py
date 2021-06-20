@@ -94,7 +94,7 @@ class StopWordRemoverFactory(object):
             'sesudahnya','setelah','setempat','setengah','seterusnya','setiap','setiba','setibanya',
             'setidak-tidaknya','setidaknya','setinggi','seusai','sewaktu','siap','siapa','siapakah',
             'siapapun','sini','sinilah','soal','soalnya','suatu','sudah','sudahkah','sudahlah','supaya',
-            't','tadi','tadinya','tahu','tak','tambah','tambahnya','tampak','tampaknya','tandas','tandasnya',
+            't','tadi','tadinya','tahu','tambah','tambahnya','tampak','tampaknya','tandas','tandasnya',
             'tanpa','tanya','tanyakan','tanyanya','tapi','tegas','tegasnya','telah','tempat','tentang','tentu',
             'tentulah','tentunya','tepat','terakhir','terasa','terbanyak','terdahulu','terdapat','terdiri',
             'terhadap','terhadapnya','teringat','teringat-ingat','terjadi','terjadilah','terjadinya','terkira',

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule20(object):
+class DisambiguatorPrefixRule20:
     """Disambiguate Prefix Rule 20
     Rule 20 : pe{w|y}V -> pe-{w|y}V
     """

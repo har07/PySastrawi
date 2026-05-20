@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule10(object):
+class DisambiguatorPrefixRule10:
     """Disambiguate Prefix Rule 10
     Rule 10 : me{l|r|w|y}V -> me-{l|r|w|y}V
     """

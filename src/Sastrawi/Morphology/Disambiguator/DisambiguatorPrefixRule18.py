@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule18a(object):
+class DisambiguatorPrefixRule18a:
     """Disambiguate Prefix Rule 18a
     Rule 18a : menyV -> me-nyV to stem menyala -> nyala
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule18a(object):
         if matches:
             return 'ny' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule18b(object):
+class DisambiguatorPrefixRule18b:
     """Disambiguate Prefix Rule 18a
     Original Rule 18 : menyV -> meny-sV
     Modified by CC (shifted into 18b, see also 18a)

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule29(object):
+class DisambiguatorPrefixRule29:
     """Disambiguate Prefix Rule 29
     Original Rule 29 : peng{g|h|q} -> peng-{g|h|q}
     Modified Rule 29 by ECS : pengC -> peng-C

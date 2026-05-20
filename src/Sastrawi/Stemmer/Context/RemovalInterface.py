@@ -1,4 +1,4 @@
-class RemovalInterface(object):
+class RemovalInterface:
     """description of class"""
 
     def get_visitor(self):

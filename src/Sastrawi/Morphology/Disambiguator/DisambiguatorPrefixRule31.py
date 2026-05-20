@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule31a(object):
+class DisambiguatorPrefixRule31a:
     """Disambiguate Prefix Rule 31a
     Rule 31a : penyV -> pe-nyV
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule31a(object):
         if matches:
             return 'ny' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule31b(object):
+class DisambiguatorPrefixRule31b:
     """Disambiguate Prefix Rule 31b
     Original Rule 31 : penyV -> peny-sV
     Modified by CC, shifted to 31b

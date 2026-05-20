@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule16(object):
+class DisambiguatorPrefixRule16:
     """Disambiguate Prefix Rule 16
     Original Nazief and Adriani's Rule 16 : meng{g|h|q} -> meng-{g|h|q}
     Modified Jelita Asian's CS Rule 16 : meng{g|h|q|k} -> meng-{g|h|q|k} to stem mengkritik
@@ -11,6 +11,6 @@ class DisambiguatorPrefixRule16(object):
         Original Nazief and Adriani's Rule 16 : meng{g|h|q} -> meng-{g|h|q}
         Modified Jelita Asian's CS Rule 16 : meng{g|h|q|k} -> meng-{g|h|q|k} to stem mengkritik
         """
-        matches = re.match(r'^meng([g|h|q|k])(.*)$', word)
+        matches = re.match(r'^meng([ghqk])(.*)$', word)
         if matches:
             return matches.group(1) + matches.group(2)

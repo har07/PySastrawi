@@ -1,7 +1,7 @@
 from Sastrawi.Stemmer.ConfixStripping.PrecedenceAdjustmentSpecification \
    import PrecedenceAdjustmentSpecification
 
-class Context(object):
+class Context:
     """Stemming Context using Nazief and Adriani, CS, ECS, Improved ECS"""
 
     def __init__(self, original_word, dictionary, visitor_provider):
@@ -14,7 +14,7 @@ class Context(object):
         self.removals = []
         self.visitors = []
         self.suffix_visitors = []
-        self.prefix_pisitors = []
+        self.prefix_visitors = []
         self.result = ''
 
         self.init_visitors()
@@ -22,7 +22,7 @@ class Context(object):
     def init_visitors(self):
         self.visitors = self.visitor_provider.get_visitors()
         self.suffix_visitors = self.visitor_provider.get_suffix_visitors()
-        self.prefix_pisitors = self.visitor_provider.get_prefix_visitors()
+        self.prefix_visitors = self.visitor_provider.get_prefix_visitors()
 
     def stopProcess(self):
         self.process_is_stopped = True
@@ -86,7 +86,7 @@ class Context(object):
 
     def remove_prefixes(self):
         for i in range(3):
-            self.accept_prefix_visitors(self.prefix_pisitors)
+            self.accept_prefix_visitors(self.prefix_visitors)
             if self.dictionary.contains(self.current_word):
                 return
 
@@ -119,7 +119,7 @@ class Context(object):
         """ECS Loop Pengembalian Akhiran"""
         self.restore_prefix()
 
-        removals = self.removals
+        removals = list(self.removals)
         reversed_removals = reversed(removals)
         current_word = self.current_word
 
@@ -158,7 +158,7 @@ class Context(object):
             self.current_word = removal.get_subject()
             break
 
-        for removal in self.removals:
+        for removal in list(self.removals):
             if removal.get_affix_type() == 'DP':
                 self.removals.remove(removal)
 

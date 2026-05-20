@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule28a(object):
+class DisambiguatorPrefixRule28a:
     """Disambiguate Prefix Rule 28a
     Rule 28a : pen{V} -> pe-n{V}
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule28a(object):
         if matches:
             return 'n' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule28b(object):
+class DisambiguatorPrefixRule28b:
     """Disambiguate Prefix Rule 28b
     Rule 28b : pen{V} -> pe-t{V}
     """

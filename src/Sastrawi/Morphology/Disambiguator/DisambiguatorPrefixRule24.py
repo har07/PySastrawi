@@ -1,7 +1,7 @@
 import re
 
 
-class DisambiguatorPrefixRule24(object):
+class DisambiguatorPrefixRule24:
     """Disambiguate Prefix Rule 24
     Rule 24 : perCAerV -> per-CAerV where C != 'r'
     """

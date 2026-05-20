@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule9(object):
+class DisambiguatorPrefixRule9:
     """Disambiguate Prefix Rule 9
     Rule 9 : te-C1erC2 -> te-C1erC2 where C1 != 'r'
     """

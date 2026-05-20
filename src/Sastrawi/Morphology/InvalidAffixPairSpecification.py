@@ -1,6 +1,6 @@
 import re
 
-class InvalidAffixPairSpecification(object):
+class InvalidAffixPairSpecification:
     """Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval". page 26
     
     @link http://researchbank.rmit.edu.au/eserv/rmit:6312/Asian.pdf
@@ -16,7 +16,6 @@ class InvalidAffixPairSpecification(object):
             r'^di(.*)an$',
             r'^ke(.*)i$',
             r'^ke(.*)an$',
-            r'^me(.*)an$',
             r'^me(.*)an$',
             r'^ter(.*)an$',
             r'^per(.*)an$']

@@ -1,6 +1,6 @@
 import re
 
-class PrecedenceAdjustmentSpecification(object):
+class PrecedenceAdjustmentSpecification:
     """Confix Stripping Rule Precedence Adjustment Specification.
     Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval" page 78-79.
 

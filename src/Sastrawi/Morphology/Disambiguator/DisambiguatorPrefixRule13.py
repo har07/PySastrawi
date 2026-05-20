@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule13a(object):
+class DisambiguatorPrefixRule13a:
     """Disambiguate Prefix Rule 13a
     Rule 13a : mem{rV|V} -> me-m{rV|V}
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule13a(object):
         if matches:
             return 'm' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule13b(object):
+class DisambiguatorPrefixRule13b:
     """Disambiguate Prefix Rule 13b
     Rule 13b : mem{rV|V} -> me-p{rV|V}
     """

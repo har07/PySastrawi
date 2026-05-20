@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule34(object):
+class DisambiguatorPrefixRule34:
     """Disambiguate Prefix Rule 34
     Rule 34 : peCP -> pe-CP where C != {r|w|y|l|m|n} and P != 'er'
     """

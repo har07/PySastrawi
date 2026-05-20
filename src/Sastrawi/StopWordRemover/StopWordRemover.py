@@ -1,4 +1,4 @@
-class StopWordRemover(object):
+class StopWordRemover:
     """description of class"""
 
     def __init__(self, dictionary):

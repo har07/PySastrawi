@@ -1,7 +1,7 @@
 import re
 from Sastrawi.Stemmer.Context.Removal import Removal
 
-class AbstractDisambiguatePrefixRule(object):
+class AbstractDisambiguatePrefixRule:
     """description of class"""
 
     def __init__(self):
@@ -15,10 +15,10 @@ class AbstractDisambiguatePrefixRule(object):
             if context.dictionary.contains(result):
                 break
 
-        if not result:
+        if result is None:
             return
 
-        removedPart = re.sub(result, '', context.current_word, 1)
+        removedPart = re.sub(result, '', context.current_word, count=1)
 
         removal = Removal(self, context.current_word, result, removedPart, 'DP')
 

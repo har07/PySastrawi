@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule23(object):
+class DisambiguatorPrefixRule23:
     """Disambiguate Prefix Rule 23
     Rule 23 : perCAP -> per-CAP where C != 'r' AND P != 'er'
     """

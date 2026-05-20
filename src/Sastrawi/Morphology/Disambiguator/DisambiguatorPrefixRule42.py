@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule42(object):
+class DisambiguatorPrefixRule42:
     """Disambiguate Prefix Rule 42
     Rule 42 : kauA -> kau-A
     """

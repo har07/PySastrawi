@@ -1,4 +1,4 @@
-class StemmerInterface(object):
+class StemmerInterface:
     """The stemmer interface"""
 
     def stem(self, text):

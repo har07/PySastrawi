@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule25(object):
+class DisambiguatorPrefixRule25:
     """Disambiguate Prefix Rule 25
     Rule 25 : pem{b|f|v} -> pem-{b|f|v}
     """

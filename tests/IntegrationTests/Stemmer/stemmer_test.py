@@ -3,11 +3,11 @@ from Sastrawi.Dictionary.ArrayDictionary import ArrayDictionary
 from Sastrawi.Stemmer.Stemmer import Stemmer
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
-class Test_StemmerTest(unittest.TestCase):
+class TestStemmer(unittest.TestCase):
     def setUp(self):
         stemmerFactory = StemmerFactory()
         self.stemmer = stemmerFactory.create_stemmer()
-        return super(Test_StemmerTest, self).setUp()
+        return super().setUp()
 
     def get_test_data(self):
         data = []
@@ -53,7 +53,7 @@ class Test_StemmerTest(unittest.TestCase):
         return data
 
     def try_stem(self, word, stem):
-        self.assertEquals(stem, self.stemmer.stem(word))
+        self.assertEqual(stem, self.stemmer.stem(word))
 
     def test_stem(self):
         data = self.get_test_data()

@@ -46,13 +46,13 @@ from Sastrawi.Morphology.Disambiguator.DisambiguatorPrefixRule40 import Disambig
 from Sastrawi.Morphology.Disambiguator.DisambiguatorPrefixRule41 import DisambiguatorPrefixRule41
 from Sastrawi.Morphology.Disambiguator.DisambiguatorPrefixRule42 import DisambiguatorPrefixRule42
 
-class VisitorProvider(object):
+class VisitorProvider:
     """description of class"""
 
     def __init__(self):
         self.visitors = []
         self.suffix_visitors = []
-        self.prefix_pisitors = []
+        self.prefix_visitors = []
 
         self.init_visitors()
 
@@ -67,62 +67,62 @@ class VisitorProvider(object):
         self.suffix_visitors.append(RemoveDerivationalSuffix())
 
         #{di|ke|se}
-        self.prefix_pisitors.append(RemovePlainPrefix())
+        self.prefix_visitors.append(RemovePlainPrefix())
 
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule1a(), DisambiguatorPrefixRule1b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule2()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule3()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule4()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule5()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule6a(), DisambiguatorPrefixRule6b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule7()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule8()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule9()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule10()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule11()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule12()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule13a(), DisambiguatorPrefixRule13b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule14()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule15a(), DisambiguatorPrefixRule15b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule16()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule1a(), DisambiguatorPrefixRule1b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule2()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule3()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule4()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule5()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule6a(), DisambiguatorPrefixRule6b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule7()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule8()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule9()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule10()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule11()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule12()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule13a(), DisambiguatorPrefixRule13b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule14()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule15a(), DisambiguatorPrefixRule15b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule16()]))
 
         disambiguators17 = [DisambiguatorPrefixRule17a(), DisambiguatorPrefixRule17b(), DisambiguatorPrefixRule17c(),
                             DisambiguatorPrefixRule17d()]
-        self.prefix_pisitors.append(PrefixDisambiguator(disambiguators17))
+        self.prefix_visitors.append(PrefixDisambiguator(disambiguators17))
 
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule18a(), DisambiguatorPrefixRule18b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule19()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule20()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule21a(), DisambiguatorPrefixRule21b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule23()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule24()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule25()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule26a(), DisambiguatorPrefixRule26b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule27()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule28a(), DisambiguatorPrefixRule28b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule29()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule18a(), DisambiguatorPrefixRule18b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule19()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule20()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule21a(), DisambiguatorPrefixRule21b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule23()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule24()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule25()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule26a(), DisambiguatorPrefixRule26b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule27()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule28a(), DisambiguatorPrefixRule28b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule29()]))
 
         disambiguators30 = [DisambiguatorPrefixRule30a(), DisambiguatorPrefixRule30b(), DisambiguatorPrefixRule30c()]
-        self.prefix_pisitors.append(PrefixDisambiguator(disambiguators30))
+        self.prefix_visitors.append(PrefixDisambiguator(disambiguators30))
 
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule31a(), DisambiguatorPrefixRule31b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule32()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule34()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule31a(), DisambiguatorPrefixRule31b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule32()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule34()]))
 
         #CS additional rules
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule35()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule36()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule35()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule36()]))
 
         #CS infix rules
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule37a(), DisambiguatorPrefixRule37b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule38a(), DisambiguatorPrefixRule38b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule39a(), DisambiguatorPrefixRule39b()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule40a(), DisambiguatorPrefixRule40b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule37a(), DisambiguatorPrefixRule37b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule38a(), DisambiguatorPrefixRule38b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule39a(), DisambiguatorPrefixRule39b()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule40a(), DisambiguatorPrefixRule40b()]))
 
         #Sastrawi rules
         #ku-A, kau-A
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule41()]))
-        self.prefix_pisitors.append(PrefixDisambiguator([DisambiguatorPrefixRule42()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule41()]))
+        self.prefix_visitors.append(PrefixDisambiguator([DisambiguatorPrefixRule42()]))
 
     def get_visitors(self):
         return self.visitors
@@ -131,5 +131,5 @@ class VisitorProvider(object):
         return self.suffix_visitors
 
     def get_prefix_visitors(self):
-        return self.prefix_pisitors
+        return self.prefix_visitors
 

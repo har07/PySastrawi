@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule15a(object):
+class DisambiguatorPrefixRule15a:
     """Disambiguate Prefix Rule 15a
     Rule 15a : men{V} -> me-n{V}
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule15a(object):
         if matches:
             return 'n' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule15b(object):
+class DisambiguatorPrefixRule15b:
     """Disambiguate Prefix Rule 15b
     Rule 15b : men{V} -> me-t{V}
     """

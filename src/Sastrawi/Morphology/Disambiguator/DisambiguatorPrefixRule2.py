@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule2(object):
+class DisambiguatorPrefixRule2:
     """Disambiguate Prefix Rule 2
     Rule 2 : berCAP -> ber-CAP where C != 'r' AND P != 'er'
     """

@@ -1,7 +1,7 @@
 import re
 from Sastrawi.Stemmer.Context.Removal import Removal
 
-class RemoveDerivationalSuffix(object):
+class RemoveDerivationalSuffix:
     """Remove Derivational Suffix.
     Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval". page 61
 
@@ -11,7 +11,7 @@ class RemoveDerivationalSuffix(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removedPart = re.sub(result, '', context.current_word, 1)
+            removedPart = re.sub(result, '', context.current_word, count=1)
 
             removal = Removal(self, context.current_word, result, removedPart, 'DS')
 
@@ -23,6 +23,6 @@ class RemoveDerivationalSuffix(object):
         Original rule : i|kan|an
         Added the adopted foreign suffix rule : is|isme|isasi
         """
-        return re.sub(r'(is|isme|isasi|i|kan|an)$', '', word, 1)
+        return re.sub(r'(is|isme|isasi|i|kan|an)$', '', word, count=1)
 
 

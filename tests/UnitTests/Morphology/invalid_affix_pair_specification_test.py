@@ -1,10 +1,10 @@
 import unittest
 from Sastrawi.Morphology.InvalidAffixPairSpecification import InvalidAffixPairSpecification
 
-class Test_InvalidAffixPairSpecificationTest(unittest.TestCase):
+class TestInvalidAffixPairSpecification(unittest.TestCase):
     def setUp(self):
         self.specification = InvalidAffixPairSpecification()
-        return super(Test_InvalidAffixPairSpecificationTest, self).setUp()
+        return super().setUp()
 
     def test_containsInvalidAffixPair(self):
         self.assertFalse(self.specification.is_satisfied_by('memberikan'))

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule36(object):
+class DisambiguatorPrefixRule36:
     """Disambiguate Prefix Rule 36
     Rule 36 : peC1erC2 -> pe-C1erC2 where C1 != {r|w|y|l|m|n}
     """

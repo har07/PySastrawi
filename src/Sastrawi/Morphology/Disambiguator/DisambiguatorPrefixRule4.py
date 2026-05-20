@@ -1,4 +1,4 @@
-class DisambiguatorPrefixRule4(object):
+class DisambiguatorPrefixRule4:
     """Disambiguate Prefix Rule 4
     Rule 4 : belajar -> bel-ajar
     """

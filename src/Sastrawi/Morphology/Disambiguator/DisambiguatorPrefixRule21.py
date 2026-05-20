@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule21a(object):
+class DisambiguatorPrefixRule21a:
     """Disambiguate Prefix Rule 21a
     Rule 21a : perV -> per-V
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule21a(object):
         if matches:
             return matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule21b(object):
+class DisambiguatorPrefixRule21b:
     """Disambiguate Prefix Rule 21b
     Rule 21b : perV -> pe-rV
     """

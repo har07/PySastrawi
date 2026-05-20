@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule14(object):
+class DisambiguatorPrefixRule14:
     """Disambiguate Prefix Rule 14
     Rule 14 modified by Andy Librian : men{c|d|j|s|t|z} -> men-{c|d|j|s|t|z}
     in order to stem mentaati

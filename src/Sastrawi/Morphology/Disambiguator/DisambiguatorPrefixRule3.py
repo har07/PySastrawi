@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule3(object):
+class DisambiguatorPrefixRule3:
     """Disambiguate Prefix Rule 3
     Rule 3 : berCAerV -> ber-CAerV where C != 'r'
     """

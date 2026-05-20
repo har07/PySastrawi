@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule37a(object):
+class DisambiguatorPrefixRule37a:
     """Disambiguate Prefix Rule 37a (CC infix rules)
     Rule 37a : CerV -> CerV
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule37a(object):
         if matches:
             return matches.group(1) + matches.group(2) + matches.group(3)
 
-class DisambiguatorPrefixRule37b(object):
+class DisambiguatorPrefixRule37b:
     """Disambiguate Prefix Rule 37b (CC infix rules)
     Rule 37b : CerV -> CV
     """

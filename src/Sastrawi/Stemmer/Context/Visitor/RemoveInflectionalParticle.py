@@ -1,7 +1,7 @@
 import re
 from Sastrawi.Stemmer.Context.Removal import Removal
 
-class RemoveInflectionalParticle(object):
+class RemoveInflectionalParticle:
     """Remove Inflectional particle.
     Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval". page 60
 
@@ -11,7 +11,7 @@ class RemoveInflectionalParticle(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removedPart = re.sub(result, '', context.current_word, 1)
+            removedPart = re.sub(result, '', context.current_word, count=1)
             
             removal = Removal(self, context.current_word, result, removedPart, 'P')
 
@@ -20,7 +20,7 @@ class RemoveInflectionalParticle(object):
 
     def remove(self, word):
         """Remove inflectional particle : lah|kah|tah|pun"""
-        return re.sub(r'-*(lah|kah|tah|pun)$', '', word, 1)
+        return re.sub(r'-*(lah|kah|tah|pun)$', '', word, count=1)
 
 
 

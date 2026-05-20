@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule26a(object):
+class DisambiguatorPrefixRule26a:
     """Disambiguate Prefix Rule 26a
     Rule 26a : pem{rV|V} -> pe-m{rV|V}
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule26a(object):
         if matches:
             return 'm' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule26b(object):
+class DisambiguatorPrefixRule26b:
     """Disambiguate Prefix Rule 26b
     Rule 26b : pem{rV|V} -> pe-p{rV|V}
     """

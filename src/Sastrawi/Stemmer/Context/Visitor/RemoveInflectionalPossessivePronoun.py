@@ -1,7 +1,7 @@
 import re
 from Sastrawi.Stemmer.Context.Removal import Removal
 
-class RemoveInflectionalPossessivePronoun(object):
+class RemoveInflectionalPossessivePronoun:
     """Remove Inflectional Possessive Pronoun
     Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval". page 60
     
@@ -11,7 +11,7 @@ class RemoveInflectionalPossessivePronoun(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removedPart = re.sub(result, '', context.current_word, 1)
+            removedPart = re.sub(result, '', context.current_word, count=1)
 
             removal = Removal(self, context.current_word, result, removedPart, 'PP')
 
@@ -20,5 +20,5 @@ class RemoveInflectionalPossessivePronoun(object):
 
     def remove(self, word):
         """Remove inflectional possessive pronoun : ku|mu|nya|-ku|-mu|-nya"""
-        return re.sub(r'-*(ku|mu|nya)$', '', word, 1)
+        return re.sub(r'-*(ku|mu|nya)$', '', word, count=1)
 

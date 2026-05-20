@@ -2,10 +2,10 @@ import unittest
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.Stemmer.Stemmer import Stemmer
 
-class Test_StemmerFactoryTest(unittest.TestCase):
+class TestStemmerFactory(unittest.TestCase):
     def setUp(self):
         self.factory = StemmerFactory()
-        return super(Test_StemmerFactoryTest, self).setUp()
+        return super().setUp()
 
     def test_createStemmerReturnStemmer(self):
         stemmer = self.factory.create_stemmer()

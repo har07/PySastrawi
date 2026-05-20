@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule35(object):
+class DisambiguatorPrefixRule35:
     """Disambiguate Prefix Rule 35
     Rule 35 : terC1erC2 -> ter-C1erC2 where C1 != {r}
     """

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule17a(object):
+class DisambiguatorPrefixRule17a:
     """Disambiguate Prefix Rule 17a
     Rule 17a : mengV -> meng-V
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule17a(object):
         if matches:
             return matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule17b(object):
+class DisambiguatorPrefixRule17b:
     """Disambiguate Prefix Rule 17b
     Rule 17b : mengV -> meng-kV
     """
@@ -26,7 +26,7 @@ class DisambiguatorPrefixRule17b(object):
         if matches:
             return 'k' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule17c(object):
+class DisambiguatorPrefixRule17c:
     """Disambiguate Prefix Rule 17c
     Rule 17c : mengV -> meng-V- where V = 'e'
     """
@@ -39,7 +39,7 @@ class DisambiguatorPrefixRule17c(object):
         if matches:
             return matches.group(1)
 
-class DisambiguatorPrefixRule17d(object):
+class DisambiguatorPrefixRule17d:
     """Disambiguate Prefix Rule 17d
     Rule 17d : mengV -> me-ngV
     """

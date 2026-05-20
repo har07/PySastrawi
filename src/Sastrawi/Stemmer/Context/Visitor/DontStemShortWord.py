@@ -1,11 +1,11 @@
-class DontStemShortWord(object):
+class DontStemShortWord:
     """description of class"""
 
     def visit(self, context):
-        if self.is_whort_word(context.current_word):
+        if self.is_short_word(context.current_word):
             context.stopProcess()
 
-    def is_whort_word(self, word):
+    def is_short_word(self, word):
         return len(word) <= 3
 
 

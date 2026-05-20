@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule11(object):
+class DisambiguatorPrefixRule11:
     """Disambiguate Prefix Rule 11
     Rule 11 : mem{b|f|v} -> mem-{b|f|v}
     """

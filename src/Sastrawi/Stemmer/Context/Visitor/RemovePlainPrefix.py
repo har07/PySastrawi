@@ -1,7 +1,7 @@
 import re
 from Sastrawi.Stemmer.Context.Removal import Removal
 
-class RemovePlainPrefix(object):
+class RemovePlainPrefix:
     """Remove Plain Prefix.
     Asian J. (2007) "Effective Techniques for Indonesian Text Retrieval". page 61
 
@@ -11,7 +11,7 @@ class RemovePlainPrefix(object):
     def visit(self, context):
         result = self.remove(context.current_word)
         if result != context.current_word:
-            removedPart = re.sub(result, '', context.current_word, 1)
+            removedPart = re.sub(result, '', context.current_word, count=1)
 
             removal = Removal(self, context.current_word, result, removedPart, 'DP')
 
@@ -20,7 +20,7 @@ class RemovePlainPrefix(object):
 
     def remove(self, word):
         """Remove plain prefix : di|ke|se"""
-        return re.sub(r'^(di|ke|se)', '', word, 1)
+        return re.sub(r'^(di|ke|se)', '', word, count=1)
 
 
 

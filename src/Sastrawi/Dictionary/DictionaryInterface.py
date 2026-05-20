@@ -1,4 +1,4 @@
-class DictionaryInterface(object):
+class DictionaryInterface:
     """Interface definition of dictionary"""
 
     def contains(self, word):

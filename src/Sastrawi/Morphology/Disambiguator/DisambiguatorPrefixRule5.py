@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule5(object):
+class DisambiguatorPrefixRule5:
     """Disambiguate Prefix Rule 5
     Rule 5 : beC1erC2 -> be-C1erC2 where C1 != 'r'
     """

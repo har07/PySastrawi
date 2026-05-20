@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule7(object):
+class DisambiguatorPrefixRule7:
     """Disambiguate Prefix Rule 7
     Rule 7 : terCerv -> ter-CerV where C != 'r'
     """

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule8(object):
+class DisambiguatorPrefixRule8:
     """Disambiguate Prefix Rule 8
     Rule 8 : terCP -> ter-CP where C != 'r' and P != 'er'
     """

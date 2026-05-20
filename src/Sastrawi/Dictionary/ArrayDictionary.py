@@ -1,4 +1,4 @@
-class ArrayDictionary(object):
+class ArrayDictionary:
     """description of class"""
 
     def __init__(self, words=None):
@@ -14,7 +14,8 @@ class ArrayDictionary(object):
 
     def add_words(self, words):
         """Add multiple words to the dictionary"""
-        self.words = dict(zip(words,words))
+        for word in words:
+            self.add(word)
 
     def add(self, word):
         """Add a word to the dictionary"""

@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule30a(object):
+class DisambiguatorPrefixRule30a:
     """Disambiguate Prefix Rule 30a
     Rule 30a : pengV -> peng-V
     """
@@ -13,7 +13,7 @@ class DisambiguatorPrefixRule30a(object):
         if matches:
             return matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule30b(object):
+class DisambiguatorPrefixRule30b:
     """Disambiguate Prefix Rule 30b
     Rule 30a : pengV -> peng-kV
     """
@@ -26,7 +26,7 @@ class DisambiguatorPrefixRule30b(object):
         if matches:
             return 'k' + matches.group(1) + matches.group(2)
 
-class DisambiguatorPrefixRule30c(object):
+class DisambiguatorPrefixRule30c:
     """Disambiguate Prefix Rule 30c
     Rule 30a : pengV -> pengV- where V = 'e'
     """

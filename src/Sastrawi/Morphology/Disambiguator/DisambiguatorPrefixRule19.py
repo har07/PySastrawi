@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule19(object):
+class DisambiguatorPrefixRule19:
     """Disambiguate Prefix Rule 19
     Original Rule 19 : mempV -> mem-pV where V != 'e'
     Modified Rule 19 by ECS : mempA -> mem-pA where A != 'e' in order to stem memproteksi

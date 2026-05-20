@@ -1,6 +1,6 @@
 import re
 
-class DisambiguatorPrefixRule41(object):
+class DisambiguatorPrefixRule41:
     """Disambiguate Prefix Rule 41
     Rule 41 : kuA -> ku-A
     """

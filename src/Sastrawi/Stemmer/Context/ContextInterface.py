@@ -1,4 +1,4 @@
-class ContextInterface(object):
+class ContextInterface:
     """description of class"""
 
     def getOriginalWord(self):

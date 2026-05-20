@@ -57,7 +57,7 @@ More Info
 .. _pip: https://docs.python.org/3.6/installing/index.html
 .. _Sastrawi PHP Repository page: https://github.com/sastrawi/sastrawi
 
-.. |Build Status| image:: https://travis-ci.org/har07/PySastrawi.svg?branch=master
-   :target: https://travis-ci.org/har07/PySastrawi
+.. |Build Status| image:: https://github.com/har07/PySastrawi/workflows/CI/badge.svg
+   :target: https://github.com/har07/PySastrawi/actions
 .. |Coverage Status| image:: https://coveralls.io/repos/har07/sastrawi/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/har07/sastrawi?branch=master

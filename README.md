@@ -41,9 +41,7 @@ print(stemmer.stem('Mereka meniru-nirukannya'))
 Demo
 --------
 
-Live demo URL : https://pysastrawi-demo.appspot.com/
-
-Repository : https://github.com/har07/pystastrawi-demo
+Live demo URL : https://har07-pysastrawi-demo.hf.space/
 
 Lisensi
 --------
